@@ -117,6 +117,9 @@ public class VehicleController : MonoBehaviour
     private Vector3 defaultCOG;
     private float boundSize = 1f;
 
+    [Header("Camera")]
+    public GameObject cameraObject;
+
 
 #if UNITY_EDITOR
     private void resetHorsepower()
@@ -161,12 +164,16 @@ public class VehicleController : MonoBehaviour
         //make sure vehicleBody has the correct parent//
         vehicleBody.transform.SetParent(transform);
 
+        // transfer the rotation on the parent object onto this object
+        transform.localRotation = transform.rotation;
+        transform.parent.localRotation = Quaternion.identity;
+
         //create physics body//
         physicsBody = new GameObject(gameObject.name + " physics");
         physicsBody.transform.position = (wheelLeftBack.transform.position + wheelLeftFront.transform.position + wheelRightBack.transform.position + wheelRightFront.transform.position) / 4;
         physicsBody.transform.rotation = transform.rotation;
         transform.position = physicsBody.transform.position;
-        physicsBody.AddComponent<VehiclePhysicsController>();
+        //physicsBody.AddComponent<VehiclePhysicsController>();
 
         //create a wheels holder
         wheels = new GameObject(gameObject.name + " wheels");
@@ -368,6 +375,8 @@ public class VehicleController : MonoBehaviour
         col3.size = new Vector3(distX - col.radius, col.radius * 0.5f, distZ);
         col3.center = new Vector3(0f, col.radius, 0f);
         col3.material = bodyPhysicsMat;
+
+        //rbody.isKinematic = true;
     }
 
     void getDiameter(Mesh mesh)

@@ -78,22 +78,18 @@ public class InGameManager: PunBehaviour {
 
 		// instantiate car at Spawn Transform
 		// car prefabs are numbered in the same order as the car sprites that the player chose from
-		car = PhotonNetwork.Instantiate("Car", spawn.position, Quaternion.identity, 0);
-        // orient the car to point in the direction of the spawn point
-        car.GetComponentInChildren<VehicleController>().transform.rotation = spawn.rotation;
+		car = PhotonNetwork.Instantiate("Car", spawn.position, spawn.rotation, 0);
         //car = ((Transform)GameObject.Instantiate(carPrefab, spawn.position, spawn.rotation)).gameObject;
 
         // car starting race position (for GUI) is same as spawn position + 1 (grid position)
         car.GetComponent<CarRaceControl> ().currentPosition = pos + 1;
 
-		// local car has simulated physics (remotes are kinematic by default - controlled by network)
-		// car.GetComponent<Rigidbody> ().isKinematic = false;
+        // local car has simulated physics (remotes are kinematic by default - controlled by network)
+        //car.GetComponentInChildren<VehicleController>().physicsBody.GetComponent<Rigidbody>().isKinematic = false;
+        car.GetComponentInChildren<VehicleController>().cameraObject.SetActive(true);
 
-		// sets local car as the camera target
-		//cameraControl.target = car.transform;
-
-		// enable GUI for local car
-		car.GetComponent<CarGUI> ().enabled = true;
+        // enable GUI for local car
+        car.GetComponent<CarGUI> ().enabled = true;
 		car.GetComponent<CarGUI> ().lapGUI = lapGUI;
 		car.GetComponent<CarGUI> ().positionGUI = positionGUI;
 		car.GetComponent<CarGUI> ().speedGUI = speedGUI;
