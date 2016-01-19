@@ -1,0 +1,542 @@
+fileFormatVersion: 2
+guid: 5373490c8547c1940b3b674a109ebac8
+timeCreated: 1441803103
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: FCK_Zombie
+    100002: FCK_Zombie Head
+    100004: FCK_Zombie HeadNub
+    100006: FCK_Zombie L Calf
+    100008: FCK_Zombie L Clavicle
+    100010: FCK_Zombie L Finger0
+    100012: FCK_Zombie L Finger0Nub
+    100014: FCK_Zombie L Foot
+    100016: FCK_Zombie L Forearm
+    100018: FCK_Zombie L Hand
+    100020: FCK_Zombie L Thigh
+    100022: FCK_Zombie L Toe0
+    100024: FCK_Zombie L Toe0Nub
+    100026: FCK_Zombie L UpperArm
+    100028: FCK_Zombie Neck
+    100030: FCK_Zombie Pelvis
+    100032: FCK_Zombie Ponytail1
+    100034: FCK_Zombie Ponytail1Nub
+    100036: FCK_Zombie R Calf
+    100038: FCK_Zombie R Clavicle
+    100040: FCK_Zombie R Finger0
+    100042: FCK_Zombie R Finger0Nub
+    100044: FCK_Zombie R Foot
+    100046: FCK_Zombie R Forearm
+    100048: FCK_Zombie R Hand
+    100050: FCK_Zombie R Thigh
+    100052: FCK_Zombie R Toe0
+    100054: FCK_Zombie R Toe0Nub
+    100056: FCK_Zombie R UpperArm
+    100058: FCK_Zombie Spine
+    100060: FCK_Zombie Spine1
+    100062: //RootNode
+    400000: FCK_Zombie
+    400002: FCK_Zombie Head
+    400004: FCK_Zombie HeadNub
+    400006: FCK_Zombie L Calf
+    400008: FCK_Zombie L Clavicle
+    400010: FCK_Zombie L Finger0
+    400012: FCK_Zombie L Finger0Nub
+    400014: FCK_Zombie L Foot
+    400016: FCK_Zombie L Forearm
+    400018: FCK_Zombie L Hand
+    400020: FCK_Zombie L Thigh
+    400022: FCK_Zombie L Toe0
+    400024: FCK_Zombie L Toe0Nub
+    400026: FCK_Zombie L UpperArm
+    400028: FCK_Zombie Neck
+    400030: FCK_Zombie Pelvis
+    400032: FCK_Zombie Ponytail1
+    400034: FCK_Zombie Ponytail1Nub
+    400036: FCK_Zombie R Calf
+    400038: FCK_Zombie R Clavicle
+    400040: FCK_Zombie R Finger0
+    400042: FCK_Zombie R Finger0Nub
+    400044: FCK_Zombie R Foot
+    400046: FCK_Zombie R Forearm
+    400048: FCK_Zombie R Hand
+    400050: FCK_Zombie R Thigh
+    400052: FCK_Zombie R Toe0
+    400054: FCK_Zombie R Toe0Nub
+    400056: FCK_Zombie R UpperArm
+    400058: FCK_Zombie Spine
+    400060: FCK_Zombie Spine1
+    400062: //RootNode
+    7400000: Idle
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: FCK_Zombie
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie L Thigh
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie L Thigh/FCK_Zombie L Calf
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie L Thigh/FCK_Zombie L Calf/FCK_Zombie
+          L Foot
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie L Thigh/FCK_Zombie L Calf/FCK_Zombie
+          L Foot/FCK_Zombie L Toe0
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie L Thigh/FCK_Zombie L Calf/FCK_Zombie
+          L Foot/FCK_Zombie L Toe0/FCK_Zombie L Toe0Nub
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie R Thigh
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie R Thigh/FCK_Zombie R Calf
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie R Thigh/FCK_Zombie R Calf/FCK_Zombie
+          R Foot
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie R Thigh/FCK_Zombie R Calf/FCK_Zombie
+          R Foot/FCK_Zombie R Toe0
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie R Thigh/FCK_Zombie R Calf/FCK_Zombie
+          R Foot/FCK_Zombie R Toe0/FCK_Zombie R Toe0Nub
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          L Clavicle
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          L Clavicle/FCK_Zombie L UpperArm
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          L Clavicle/FCK_Zombie L UpperArm/FCK_Zombie L Forearm
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          L Clavicle/FCK_Zombie L UpperArm/FCK_Zombie L Forearm/FCK_Zombie L Hand
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          L Clavicle/FCK_Zombie L UpperArm/FCK_Zombie L Forearm/FCK_Zombie L Hand/FCK_Zombie
+          L Finger0
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          L Clavicle/FCK_Zombie L UpperArm/FCK_Zombie L Forearm/FCK_Zombie L Hand/FCK_Zombie
+          L Finger0/FCK_Zombie L Finger0Nub
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          Neck
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          Neck/FCK_Zombie Head
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          Neck/FCK_Zombie Head/FCK_Zombie HeadNub
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          Neck/FCK_Zombie Head/FCK_Zombie Ponytail1
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          Neck/FCK_Zombie Head/FCK_Zombie Ponytail1/FCK_Zombie Ponytail1Nub
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          R Clavicle
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          R Clavicle/FCK_Zombie R UpperArm
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          R Clavicle/FCK_Zombie R UpperArm/FCK_Zombie R Forearm
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          R Clavicle/FCK_Zombie R UpperArm/FCK_Zombie R Forearm/FCK_Zombie R Hand
+        weight: 1
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          R Clavicle/FCK_Zombie R UpperArm/FCK_Zombie R Forearm/FCK_Zombie R Hand/FCK_Zombie
+          R Finger0
+        weight: 0
+      - path: FCK_Zombie/FCK_Zombie Pelvis/FCK_Zombie Spine/FCK_Zombie Spine1/FCK_Zombie
+          R Clavicle/FCK_Zombie R UpperArm/FCK_Zombie R Forearm/FCK_Zombie R Hand/FCK_Zombie
+          R Finger0/FCK_Zombie R Finger0Nub
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human:
+    - boneName: FCK_Zombie Pelvis
+      humanName: Hips
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L Thigh
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R Thigh
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L Calf
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R Calf
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L Foot
+      humanName: LeftFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R Foot
+      humanName: RightFoot
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie Spine
+      humanName: Spine
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie Spine1
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie Neck
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie Head
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L Clavicle
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R Clavicle
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L UpperArm
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R UpperArm
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L Forearm
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R Forearm
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L Hand
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R Hand
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie L Toe0
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: FCK_Zombie R Toe0
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: Zombie_Anims-T-Stance(Clone)
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: zombie_mesh
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: -.707106829, y: 0, z: -0, w: .707106829}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie
+      position: {x: 0, y: .81592679, z: .0363881439}
+      rotation: {x: -.500000358, y: .499999642, z: .499999642, w: .500000358}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie Pelvis
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: .504560173, y: -.495397866, z: -.504560173, w: -.495397866}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie Spine
+      position: {x: -.0813926682, y: -.000141539567, z: -2.48111769e-06}
+      rotation: {x: .00916066952, y: -6.73128525e-05, z: .00742569938, w: .999930501}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie Spine1
+      position: {x: -.177839652, y: -.000211501116, z: -5.86624083e-10}
+      rotation: {x: 1.01495357e-13, y: -5.41178267e-08, z: .0195117611, w: .999809623}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie L Clavicle
+      position: {x: -.188690946, y: -.000686750398, z: .0446383096}
+      rotation: {x: .707106769, y: .000281540997, z: -.707106769, w: .000281540997}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: FCK_Zombie L UpperArm
+      position: {x: -.104644693, y: 0, z: 7.62939436e-08}
+      rotation: {x: .0630768836, y: -.173780978, z: -.00502820127, w: .982749283}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie L Forearm
+      position: {x: -.317009389, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: .106638022, w: .994297922}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie L Hand
+      position: {x: -.25701493, y: 4.76837148e-09, z: 0}
+      rotation: {x: -.704971671, y: -.0250665788, z: -.167699516, w: .688668013}
+      scale: {x: 1, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie Neck
+      position: {x: -.315441579, y: .0567114912, z: 7.67411237e-08}
+      rotation: {x: 6.10443109e-08, y: 1.59181957e-06, z: -.369564861, w: .929205}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie Head
+      position: {x: -.0924671143, y: .00958068855, z: 7.94866324e-08}
+      rotation: {x: 4.86573377e-08, y: -1.23675807e-06, z: .227522179, w: .973772943}
+      scale: {x: .999999821, y: .999999821, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie Ponytail1
+      position: {x: -.0398052968, y: .0533753373, z: -1.50904444e-08}
+      rotation: {x: -1.74800365e-12, y: -2.52416089e-06, z: .910066843, w: -.414461464}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie R Clavicle
+      position: {x: -.188690946, y: -.000686502433, z: -.0446382985}
+      rotation: {x: .707106769, y: .000281540997, z: .707106769, w: -.000281540997}
+      scale: {x: 1, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: FCK_Zombie R UpperArm
+      position: {x: -.104644679, y: 0, z: 0}
+      rotation: {x: -.0630768836, y: .173781052, z: -.00502818823, w: .982749283}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie R Forearm
+      position: {x: -.31700933, y: -4.76837148e-09, z: 0}
+      rotation: {x: 0, y: 0, z: .106638029, w: .994297922}
+      scale: {x: .999999881, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie R Hand
+      position: {x: -.25701493, y: 0, z: 0}
+      rotation: {x: .704971671, y: .0250666067, z: -.167699546, w: .688668013}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie L Thigh
+      position: {x: 1.52587887e-07, y: 1.57356254e-07, z: .0889619514}
+      rotation: {x: .0268155057, y: .998487294, z: .0479951836, w: .000715508475}
+      scale: {x: .99999994, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    - name: FCK_Zombie L Calf
+      position: {x: -.394041091, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: .0581716746, w: .998306632}
+      scale: {x: 1, y: 1, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie L Foot
+      position: {x: -.305508524, y: 0, z: -9.53674295e-09}
+      rotation: {x: -.0261607543, y: .00423660269, z: -.0847732797, w: .996047795}
+      scale: {x: 1, y: .999999821, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie L Toe0
+      position: {x: -.118288867, y: .149190828, z: 0}
+      rotation: {x: 1.21829924e-15, y: 1.21829924e-15, z: -.707106829, w: .707106829}
+      scale: {x: .99999994, y: 1, z: .99999994}
+      transformModified: 1
+    - name: FCK_Zombie R Thigh
+      position: {x: -1.52587887e-07, y: -8.58306848e-08, z: -.0889619365}
+      rotation: {x: .0267978236, y: .999199152, z: -.0296910461, w: -.00120819081}
+      scale: {x: .99999994, y: 1.00000024, z: 1.00000012}
+      transformModified: 1
+    - name: FCK_Zombie R Calf
+      position: {x: -.394041002, y: -2.38418574e-09, z: -9.53674295e-09}
+      rotation: {x: 0, y: 0, z: .0581716783, w: .998306632}
+      scale: {x: .99999994, y: .99999994, z: .99999994}
+      transformModified: 1
+    - name: FCK_Zombie R Foot
+      position: {x: -.305508524, y: 0, z: 0}
+      rotation: {x: .0261607394, y: -.00423665578, z: -.0847732723, w: .996047795}
+      scale: {x: 1.00000012, y: .999999881, z: 1}
+      transformModified: 1
+    - name: FCK_Zombie R Toe0
+      position: {x: -.118288875, y: .149190843, z: 9.53674295e-09}
+      rotation: {x: -1.21829257e-15, y: -1.21829257e-15, z: -.707106829, w: .707106829}
+      scale: {x: 1.00000012, y: 1.00000012, z: 1.00000012}
+      transformModified: 1
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 9e4c7d592b5516a43ad01bfcc91b4c7f,
+    type: 3}
+  animationType: 3
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

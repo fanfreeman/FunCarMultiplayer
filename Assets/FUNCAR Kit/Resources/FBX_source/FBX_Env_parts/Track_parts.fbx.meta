@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 08c599d88c2bdd740851e189938124b9
+timeCreated: 1440191655
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: track_45_straight
+    100002: track_45_turn
+    100004: track_45_turn_connector
+    100006: track_45_turn_flip
+    100008: track_45_Xramp
+    100010: //RootNode
+    100012: track_small_square
+    100014: track_straight
+    100016: track_straight_ramp
+    100018: track_straight_ramp_jump
+    100020: track_straight_ramp_mid
+    100022: track_turn_big_90
+    100024: track_turn_big_90_flip
+    100026: track_turn_small_90
+    100028: track_turn_small_90_flip
+    100030: track_twist_big_90
+    100032: track_twist_big_90_flip
+    100034: track_small_square1
+    100036: track_large_square
+    400000: track_45_straight
+    400002: track_45_turn
+    400004: track_45_turn_connector
+    400006: track_45_turn_flip
+    400008: track_45_Xramp
+    400010: //RootNode
+    400012: track_small_square
+    400014: track_straight
+    400016: track_straight_ramp
+    400018: track_straight_ramp_jump
+    400020: track_straight_ramp_mid
+    400022: track_turn_big_90
+    400024: track_turn_big_90_flip
+    400026: track_turn_small_90
+    400028: track_turn_small_90_flip
+    400030: track_twist_big_90
+    400032: track_twist_big_90_flip
+    400034: track_small_square1
+    400036: track_large_square
+    2300000: track_45_straight
+    2300002: track_45_turn
+    2300004: track_45_turn_connector
+    2300006: track_45_turn_flip
+    2300008: track_45_Xramp
+    2300010: track_small_square
+    2300012: track_straight
+    2300014: track_straight_ramp
+    2300016: track_straight_ramp_jump
+    2300018: track_straight_ramp_mid
+    2300020: track_turn_big_90
+    2300022: track_turn_big_90_flip
+    2300024: track_turn_small_90
+    2300026: track_turn_small_90_flip
+    2300028: track_twist_big_90
+    2300030: track_twist_big_90_flip
+    2300032: track_small_square1
+    2300034: track_large_square
+    3300000: track_45_straight
+    3300002: track_45_turn
+    3300004: track_45_turn_connector
+    3300006: track_45_turn_flip
+    3300008: track_45_Xramp
+    3300010: track_small_square
+    3300012: track_straight
+    3300014: track_straight_ramp
+    3300016: track_straight_ramp_jump
+    3300018: track_straight_ramp_mid
+    3300020: track_turn_big_90
+    3300022: track_turn_big_90_flip
+    3300024: track_turn_small_90
+    3300026: track_turn_small_90_flip
+    3300028: track_twist_big_90
+    3300030: track_twist_big_90_flip
+    3300032: track_small_square1
+    3300034: track_large_square
+    4300000: track_small_square
+    4300002: track_turn_small_90
+    4300004: track_turn_small_90_flip
+    4300006: track_turn_big_90_flip
+    4300008: track_turn_big_90
+    4300010: track_45_straight
+    4300012: track_45_turn
+    4300014: track_45_turn_flip
+    4300016: track_45_turn_connector
+    4300018: track_straight_ramp
+    4300020: track_twist_big_90
+    4300022: track_twist_big_90_flip
+    4300024: track_straight
+    4300026: track_45_Xramp
+    4300028: track_straight_ramp_mid
+    4300030: track_straight_ramp_jump
+    4300032: track_small_square1
+    4300034: track_large_square
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

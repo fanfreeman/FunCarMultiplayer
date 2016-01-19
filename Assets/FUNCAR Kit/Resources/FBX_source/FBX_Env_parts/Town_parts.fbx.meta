@@ -1,0 +1,435 @@
+fileFormatVersion: 2
+guid: 656336af3feaff84da8c114fb467afaa
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: directionalLight1
+    100004: front1
+    100006: left
+    100008: pCone4
+    100010: pCone5
+    100012: pCone6
+    100014: pCone7
+    100016: pCube18
+    100018: polySurface100
+    100020: polySurface125
+    100022: polySurface143
+    100024: polySurface145
+    100026: polySurface148
+    100028: polySurface166
+    100030: polySurface167
+    100032: polySurface168
+    100034: polySurface169
+    100036: polySurface96
+    100038: polySurface99
+    100040: pPlane11
+    100042: pPlane14
+    100044: pPlane25
+    100046: pPlane27
+    100048: pPlane28
+    100050: pPlane32
+    100052: pPlane39
+    100054: pPlane5
+    100056: pSphere1
+    100058: pSphere2
+    100060: Apartment_Large1
+    100062: Apartment_Mid1
+    100064: Apartment_Mid2
+    100066: Apartment_Small1
+    100068: Contruct_Crane1
+    100070: Ground_Lake1
+    100072: Ground_Plane1
+    100074: Ground_Pond1
+    100076: Prop_DinerTable1
+    100078: Prop_Phonebooth1
+    100080: Prop_Tree1
+    100082: Prop_Tree2
+    100084: Prop_Tree3
+    100086: Road_Crossing1
+    100088: Road_Roundabout1
+    100090: Road_Straight1
+    100092: Road_TCrossing1
+    100094: Store_Diner1
+    100096: Store_Donut1
+    100098: Store_Garage1
+    100100: Store_Music1
+    100102: Road_Turn1
+    100104: Apartments
+    100106: Construction
+    100108: Ground
+    100110: Props
+    100112: Road_TJunction1
+    100114: Roads
+    100116: Stores
+    100118: Town_parts
+    100120: boxCowboy_mesh
+    100122: pCube1
+    100124: Road_Crossing2
+    100126: Apartment_Large1 1
+    100128: Apartment_Large1_collision
+    100130: Apartment_Mid1 1
+    100132: Apartment_Mid1_collision
+    100134: Apartment_Mid2 1
+    100136: Apartment_Mid2_collision
+    100138: Apartment_Small1 1
+    100140: Apartment_Small1_collision
+    100142: Contruct_Crane1 1
+    100144: Contruct_Crane1_collision
+    100146: Prop_Tree1 1
+    100148: Prop_Tree1_collision
+    100150: Prop_Tree2 1
+    100152: Prop_Tree2_collision
+    100154: Prop_Tree3 1
+    100156: Prop_Tree3_collision
+    100158: Prop_Tree1_collision 1
+    100160: Prop_Tree4
+    100162: Prop_Tree4 1
+    100164: Prop_Tree4_collision
+    400000: //RootNode
+    400002: directionalLight1
+    400004: front1
+    400006: left
+    400008: pCone4
+    400010: pCone5
+    400012: pCone6
+    400014: pCone7
+    400016: pCube18
+    400018: polySurface100
+    400020: polySurface125
+    400022: polySurface143
+    400024: polySurface145
+    400026: polySurface148
+    400028: polySurface166
+    400030: polySurface167
+    400032: polySurface168
+    400034: polySurface169
+    400036: polySurface96
+    400038: polySurface99
+    400040: pPlane11
+    400042: pPlane14
+    400044: pPlane25
+    400046: pPlane27
+    400048: pPlane28
+    400050: pPlane32
+    400052: pPlane39
+    400054: pPlane5
+    400056: pSphere1
+    400058: pSphere2
+    400060: Apartment_Large1
+    400062: Apartment_Mid1
+    400064: Apartment_Mid2
+    400066: Apartment_Small1
+    400068: Contruct_Crane1
+    400070: Ground_Lake1
+    400072: Ground_Plane1
+    400074: Ground_Pond1
+    400076: Prop_DinerTable1
+    400078: Prop_Phonebooth1
+    400080: Prop_Tree1
+    400082: Prop_Tree2
+    400084: Prop_Tree3
+    400086: Road_Crossing1
+    400088: Road_Roundabout1
+    400090: Road_Straight1
+    400092: Road_TCrossing1
+    400094: Store_Diner1
+    400096: Store_Donut1
+    400098: Store_Garage1
+    400100: Store_Music1
+    400102: Road_Turn1
+    400104: Apartments
+    400106: Construction
+    400108: Ground
+    400110: Props
+    400112: Road_TJunction1
+    400114: Roads
+    400116: Stores
+    400118: Town_parts
+    400120: boxCowboy_mesh
+    400122: pCube1
+    400124: Road_Crossing2
+    400126: Apartment_Large1 1
+    400128: Apartment_Large1_collision
+    400130: Apartment_Mid1 1
+    400132: Apartment_Mid1_collision
+    400134: Apartment_Mid2 1
+    400136: Apartment_Mid2_collision
+    400138: Apartment_Small1 1
+    400140: Apartment_Small1_collision
+    400142: Contruct_Crane1 1
+    400144: Contruct_Crane1_collision
+    400146: Prop_Tree1 1
+    400148: Prop_Tree1_collision
+    400150: Prop_Tree2 1
+    400152: Prop_Tree2_collision
+    400154: Prop_Tree3 1
+    400156: Prop_Tree3_collision
+    400158: Prop_Tree1_collision 1
+    400160: Prop_Tree4
+    400162: Prop_Tree4 1
+    400164: Prop_Tree4_collision
+    2300000: pCone4
+    2300002: pCone5
+    2300004: pCone6
+    2300006: pCone7
+    2300008: pCube18
+    2300010: polySurface100
+    2300012: polySurface125
+    2300014: polySurface143
+    2300016: polySurface145
+    2300018: polySurface148
+    2300020: polySurface166
+    2300022: polySurface167
+    2300024: polySurface168
+    2300026: polySurface169
+    2300028: polySurface96
+    2300030: polySurface99
+    2300032: pPlane11
+    2300034: pPlane14
+    2300036: pPlane25
+    2300038: pPlane27
+    2300040: pPlane28
+    2300042: pPlane32
+    2300044: pPlane39
+    2300046: pPlane5
+    2300048: pSphere1
+    2300050: pSphere2
+    2300052: Apartment_Large1
+    2300054: Apartment_Mid1
+    2300056: Apartment_Mid2
+    2300058: Apartment_Small1
+    2300060: Contruct_Crane1
+    2300062: Ground_Lake1
+    2300064: Ground_Plane1
+    2300066: Ground_Pond1
+    2300068: Prop_DinerTable1
+    2300070: Prop_Phonebooth1
+    2300072: Prop_Tree1
+    2300074: Prop_Tree2
+    2300076: Prop_Tree3
+    2300078: Road_Crossing1
+    2300080: Road_Roundabout1
+    2300082: Road_Straight1
+    2300084: Road_TCrossing1
+    2300086: Store_Diner1
+    2300088: Store_Donut1
+    2300090: Store_Garage1
+    2300092: Store_Music1
+    2300094: Road_Turn1
+    2300096: Road_TJunction1
+    2300098: boxCowboy_mesh
+    2300100: pCube1
+    2300102: Road_Crossing2
+    2300104: Apartment_Large1 1
+    2300106: Apartment_Large1_collision
+    2300108: Apartment_Mid1 1
+    2300110: Apartment_Mid1_collision
+    2300112: Apartment_Mid2 1
+    2300114: Apartment_Mid2_collision
+    2300116: Apartment_Small1 1
+    2300118: Apartment_Small1_collision
+    2300120: Contruct_Crane1 1
+    2300122: Contruct_Crane1_collision
+    2300124: Prop_Tree1 1
+    2300126: Prop_Tree1_collision
+    2300128: Prop_Tree2 1
+    2300130: Prop_Tree2_collision
+    2300132: Prop_Tree3 1
+    2300134: Prop_Tree3_collision
+    2300136: Prop_Tree1_collision 1
+    2300138: Prop_Tree4 1
+    2300140: Prop_Tree4_collision
+    3300000: pCone4
+    3300002: pCone5
+    3300004: pCone6
+    3300006: pCone7
+    3300008: pCube18
+    3300010: polySurface100
+    3300012: polySurface125
+    3300014: polySurface143
+    3300016: polySurface145
+    3300018: polySurface148
+    3300020: polySurface166
+    3300022: polySurface167
+    3300024: polySurface168
+    3300026: polySurface169
+    3300028: polySurface96
+    3300030: polySurface99
+    3300032: pPlane11
+    3300034: pPlane14
+    3300036: pPlane25
+    3300038: pPlane27
+    3300040: pPlane28
+    3300042: pPlane32
+    3300044: pPlane39
+    3300046: pPlane5
+    3300048: pSphere1
+    3300050: pSphere2
+    3300052: Apartment_Large1
+    3300054: Apartment_Mid1
+    3300056: Apartment_Mid2
+    3300058: Apartment_Small1
+    3300060: Contruct_Crane1
+    3300062: Ground_Lake1
+    3300064: Ground_Plane1
+    3300066: Ground_Pond1
+    3300068: Prop_DinerTable1
+    3300070: Prop_Phonebooth1
+    3300072: Prop_Tree1
+    3300074: Prop_Tree2
+    3300076: Prop_Tree3
+    3300078: Road_Crossing1
+    3300080: Road_Roundabout1
+    3300082: Road_Straight1
+    3300084: Road_TCrossing1
+    3300086: Store_Diner1
+    3300088: Store_Donut1
+    3300090: Store_Garage1
+    3300092: Store_Music1
+    3300094: Road_Turn1
+    3300096: Road_TJunction1
+    3300098: boxCowboy_mesh
+    3300100: pCube1
+    3300102: Road_Crossing2
+    3300104: Apartment_Large1 1
+    3300106: Apartment_Large1_collision
+    3300108: Apartment_Mid1 1
+    3300110: Apartment_Mid1_collision
+    3300112: Apartment_Mid2 1
+    3300114: Apartment_Mid2_collision
+    3300116: Apartment_Small1 1
+    3300118: Apartment_Small1_collision
+    3300120: Contruct_Crane1 1
+    3300122: Contruct_Crane1_collision
+    3300124: Prop_Tree1 1
+    3300126: Prop_Tree1_collision
+    3300128: Prop_Tree2 1
+    3300130: Prop_Tree2_collision
+    3300132: Prop_Tree3 1
+    3300134: Prop_Tree3_collision
+    3300136: Prop_Tree1_collision 1
+    3300138: Prop_Tree4 1
+    3300140: Prop_Tree4_collision
+    4300000: pCone4
+    4300002: pSphere1
+    4300004: pCone5
+    4300006: pSphere2
+    4300008: polySurface96
+    4300010: pPlane5
+    4300012: pPlane11
+    4300014: pPlane14
+    4300016: pPlane25
+    4300018: pPlane27
+    4300020: pPlane28
+    4300022: polySurface99
+    4300024: polySurface100
+    4300026: polySurface125
+    4300028: polySurface145
+    4300030: polySurface148
+    4300032: pCube18
+    4300034: polySurface143
+    4300036: pPlane32
+    4300038: pCone6
+    4300040: pCone7
+    4300042: polySurface166
+    4300044: polySurface167
+    4300046: pPlane39
+    4300048: polySurface168
+    4300050: polySurface169
+    4300052: Prop_Tree1
+    4300054: Prop_Tree2
+    4300056: Contruct_Crane1
+    4300058: Road_TCrossing1
+    4300060: Road_Crossing1
+    4300062: Road_Roundabout1
+    4300064: Road_Straight1
+    4300066: Ground_Plane1
+    4300068: Store_Music1
+    4300070: Apartment_Mid1
+    4300072: Apartment_Small1
+    4300074: Store_Diner1
+    4300076: Apartment_Large1
+    4300078: Prop_DinerTable1
+    4300080: Store_Donut1
+    4300082: Ground_Pond1
+    4300084: Apartment_Mid2
+    4300086: Ground_Lake1
+    4300088: Store_Garage1
+    4300090: Prop_Phonebooth1
+    4300092: Prop_Tree3
+    4300094: Road_Turn1
+    4300096: Road_TJunction1
+    4300098: boxCowboy_mesh
+    4300100: pCube1
+    4300102: Road_Crossing2
+    4300104: Contruct_Crane1_collision
+    4300106: Apartment_Small1_collision
+    4300108: Apartment_Large1_collision
+    4300110: Apartment_Mid2_collision
+    4300112: Apartment_Mid1_collision
+    4300114: Prop_Tree1_collision
+    4300116: Prop_Tree2_collision
+    4300118: Prop_Tree3_collision
+    4300120: Prop_Tree4
+    4300122: Prop_Tree1_collision
+    4300124: Prop_Tree4_collision
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

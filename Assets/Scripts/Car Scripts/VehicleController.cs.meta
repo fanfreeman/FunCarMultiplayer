@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 80be20f54fb8b274ba0ac5cc9cff8ee9
+timeCreated: 1440737217
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - vehicleBody: {instanceID: 0}
+  - wheelLeftFront: {instanceID: 0}
+  - wheelRightFront: {instanceID: 0}
+  - wheelLeftBack: {instanceID: 0}
+  - wheelRightBack: {instanceID: 0}
+  - tirePhysicsMat: {fileID: 13400000, guid: 50d59f3b80911bb40b36a6701cf4e88a, type: 2}
+  - bodyPhysicsMat: {fileID: 13400000, guid: 821b296406b850f4f8a2253482faf2cd, type: 2}
+  - rbody: {instanceID: 0}
+  - physicsBody: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

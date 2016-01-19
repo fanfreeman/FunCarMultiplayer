@@ -1,0 +1,95 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: tires_mat
+  m_Shader: {fileID: 4800000, guid: 4cd3fcc9ab2dd7e49846ad00241ba4f6, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 63fffd1c6289a6b44a65109b0bbd504c, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _BumpMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _diffuse
+        second:
+          m_Texture: {fileID: 2800000, guid: 04b7165d7c952f6449efc6ea6eaf3742, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Shininess
+        second: .119000003
+      data:
+        first:
+          name: _RimPower
+        second: 1.88999999
+      data:
+        first:
+          name: _diffuse_multiply
+        second: 1.21428573
+      data:
+        first:
+          name: _rimPower
+        second: 2.32920051
+      data:
+        first:
+          name: _specular
+        second: .148214281
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .0708801821, g: .318248928, b: .41911763, a: 1}
+      data:
+        first:
+          name: _RimColor
+        second: {r: .455449849, g: .726315498, b: .764705896, a: 0}
+      data:
+        first:
+          name: _ReflectColor
+        second: {r: 1, g: 1, b: 1, a: .5}
+      data:
+        first:
+          name: _diffuse_colour
+        second: {r: 1, g: 1, b: 1, a: 1}
+      data:
+        first:
+          name: _rimColor
+        second: {r: .713235259, g: .499264687, b: .178308815, a: 1}
+      data:
+        first:
+          name: _specularColor
+        second: {r: 1, g: 1, b: 1, a: 1}
