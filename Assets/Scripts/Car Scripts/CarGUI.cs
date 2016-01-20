@@ -25,7 +25,15 @@ public class CarGUI : Photon.MonoBehaviour {
 	}
 	
 	void Update () {
-        speedGUI.text = ((int)(carRigidBody.velocity.magnitude * 2.23693629f * 1.6f)) + "";
+        //车炸了后速度一直为0
+        if (carRigidBody)
+        {
+            speedGUI.text = ((int)(carRigidBody.velocity.magnitude * 2.23693629f * 1.6f)) + "";
+        }
+        else
+        {
+            speedGUI.text = (0) + "";
+        }
         lapGUI.text = (carRaceControl.lapsCompleted + 1) + "/" + carRaceControl.totalLaps;
 		positionGUI.text = "" + carRaceControl.currentPosition;
 		// wait for first checkpoint, so the GO! message isn't hidden by this

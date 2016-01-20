@@ -53,19 +53,21 @@ public class NetworkCar : Photon.MonoBehaviour
 			stream.SendNext((float)m_CarInput.Steer);
 			stream.SendNext((float)m_CarInput.Accell);
 			stream.SendNext((float)m_CarInput.Handbrake);
-			stream.SendNext(physicsBody.transform.position);
+            stream.SendNext(physicsBody.transform.position);
 			stream.SendNext(physicsBody.transform.rotation);
 			stream.SendNext(rb.velocity);
-		}
+            stream.SendNext((float)m_CarInput.Fire);
+        }
 		else {
 			// remote car, receive data
 			m_CarInput.Steer = (float)stream.ReceiveNext();
 			m_CarInput.Accell = (float)stream.ReceiveNext();
 			m_CarInput.Handbrake = (float)stream.ReceiveNext();
-			correctPlayerPos = (Vector3)stream.ReceiveNext();
+            correctPlayerPos = (Vector3)stream.ReceiveNext();
 			correctPlayerRot = (Quaternion)stream.ReceiveNext();
 			currentVelocity = (Vector3)stream.ReceiveNext();
-			updateTime = Time.time;
+            m_CarInput.Fire = (float)stream.ReceiveNext();
+            updateTime = Time.time;
 		} 
 	}
 }

@@ -92,6 +92,8 @@ public class VehicleController : MonoBehaviour
     private GameObject colRF;
     private GameObject turnLF;
     private GameObject turnRF;
+    //if car is destoryed, player should not controll it!;
+    private bool isDestoryed;
 
     [HideInInspector]
     public float inputX;
@@ -416,6 +418,7 @@ public class VehicleController : MonoBehaviour
 
     void Update()
     {
+        if (isDestoryed) return;
         //track how many tires are touching the ground//
         tiresOnGround = 0;
         FtiresOnGround = 0;
@@ -601,6 +604,7 @@ public class VehicleController : MonoBehaviour
     // Update is called once per frame
     public void Move(float steering, float accel, float footbrake, float handbrake)
     {
+        if(isDestoryed) return;
         //input//
         //inputX = Input.GetAxis("Horizontal");
         //inputY = Input.GetAxis("Vertical");
@@ -688,4 +692,10 @@ public class VehicleController : MonoBehaviour
         wheels.transform.position = transform.position;
         wheels.transform.rotation = transform.rotation;
     }
+
+    public void SetToDestory()
+    {
+        isDestoryed = true;
+    }
+
 }
