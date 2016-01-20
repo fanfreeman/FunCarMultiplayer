@@ -12,10 +12,10 @@ public class MineThrowerHitAndBoom : MonoBehaviour {
         Vector3 contactPoint = collision.contacts[0].point;
 
         Collider[] colliders = Physics.OverlapSphere(contactPoint, explodRadius);
-        Debug.Log("colliders:"+colliders.Length);
+//        Debug.Log("colliders:"+colliders.Length);
         foreach (Collider hit in colliders) {
             Rigidbody rb = hit.GetComponent<Rigidbody>();
-            Debug.Log("AddExplosionForce:"+hit.name);
+//            Debug.Log("AddExplosionForce:"+hit.name);
 
             if(hit.transform.parent)
             {

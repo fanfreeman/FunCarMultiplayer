@@ -4,25 +4,28 @@ using UnityEngine;
 //挂在在刚体上 方便实现各种物理效果
 public class CarExploderRigidbodyTrigger : MonoBehaviour {
 
-    private GameObject suspensionGameObject;
     private CharacterJoint suspension;
     private GameObject carBody;
     private PhysicMaterial boomPhysics;
     private GameObject[] wheels;
     private VehicleController _vehicleScript;
-
+    private GameObject suspensionBody;
+    private CarExploder exploder;
     //撞击同时带有trigger和collider的物体可能会多次触发,防止多次触发
     private bool isBoomed = false;
     // Use this for initialization
-    public void Setup (string name,
+    public void Setup (
+            CarExploder _exploder,
             GameObject body,
             VehicleController vehicleScript,
             GameObject wheel1,
             GameObject wheel2,
             GameObject wheel3,
             GameObject wheel4,
-            PhysicMaterial physicMaterial
+            PhysicMaterial physicMaterial,
+            GameObject _suspensionBody
     ) {
+        exploder = _exploder;
         carBody = body;
 
         wheels = new GameObject[4];
@@ -33,8 +36,7 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
         _vehicleScript = vehicleScript;
         boomPhysics = physicMaterial;
         //为了让车轮胎也被炸飞 必须先取消CharacterController
-        suspensionGameObject = GameObject.Find(name+" suspension");
-        suspension = suspensionGameObject.GetComponent<CharacterJoint>();
+        suspension = _suspensionBody.GetComponent<CharacterJoint>();
 
     }
 //    void OnDrawGizmos() {
@@ -85,8 +87,8 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
         carBodyCollider.size = carBody.transform.GetChild(0).GetComponent<MeshRenderer>().bounds.size;
         _vehicleScript.SetToDestory();
 
+        exploder.DestoryCar(4f);
         Debug.Log("爆炸");
         Destroy(gameObject);
-
     }
 }

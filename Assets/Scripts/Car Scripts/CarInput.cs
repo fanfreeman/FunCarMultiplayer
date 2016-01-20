@@ -20,7 +20,6 @@ public class CarInput : MonoBehaviour
     public float Accell { get; set; }
 	public float Handbrake { get; set; }
     public float Fire { get; set; }
-
 	// when true, car will be controlled locally (remotely otherwise)
 	public bool controlable = false;
 

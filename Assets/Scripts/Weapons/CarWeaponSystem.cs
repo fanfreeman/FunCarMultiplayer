@@ -22,7 +22,7 @@ public class CarWeaponSystem : MonoBehaviour {
 	void Start () {
         //获得刚体
         mineCoolDownCounter = mineCoolDownCount;
-        physics = GameObject.Find(gameObject.name+" physics");
+        physics = gameObject.GetComponent<VehicleController>().physicsBody;
         if(physics)
         {
             carRealRigidbody = physics.GetComponent<Rigidbody>();

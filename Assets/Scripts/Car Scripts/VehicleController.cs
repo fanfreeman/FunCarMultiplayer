@@ -83,9 +83,11 @@ public class VehicleController : MonoBehaviour
     [HideInInspector]
     public GameObject physicsBody;
     private GameObject colBody;
-    private GameObject suspensionBody;
+    [HideInInspector]
+    public GameObject suspensionBody;
     private GameObject colSuspension;
-    private GameObject wheels;
+    [HideInInspector]
+    public GameObject wheels;
     private GameObject colLB;
     private GameObject colLF;
     private GameObject colRB;
@@ -93,7 +95,8 @@ public class VehicleController : MonoBehaviour
     private GameObject turnLF;
     private GameObject turnRF;
     //if car is destoryed, player should not controll it!;
-    private bool isDestoryed;
+    [HideInInspector]
+    public bool isDestoryed;
 
     [HideInInspector]
     public float inputX;
@@ -118,6 +121,9 @@ public class VehicleController : MonoBehaviour
     public bool roofOnGround = false;
     private Vector3 defaultCOG;
     private float boundSize = 1f;
+
+    [Header("Camera")]
+    public GameObject cameraObject;
 
 
 #if UNITY_EDITOR
@@ -160,15 +166,21 @@ public class VehicleController : MonoBehaviour
 
     void Awake()
     {
+        isDestoryed = false;
+
         //make sure vehicleBody has the correct parent//
         vehicleBody.transform.SetParent(transform);
+
+        // transfer the rotation on the parent object onto this object
+        transform.localRotation = transform.rotation;
+        transform.parent.localRotation = Quaternion.identity;
 
         //create physics body//
         physicsBody = new GameObject(gameObject.name + " physics");
         physicsBody.transform.position = (wheelLeftBack.transform.position + wheelLeftFront.transform.position + wheelRightBack.transform.position + wheelRightFront.transform.position) / 4;
         physicsBody.transform.rotation = transform.rotation;
         transform.position = physicsBody.transform.position;
-        physicsBody.AddComponent<VehiclePhysicsController>();
+        //physicsBody.AddComponent<VehiclePhysicsController>();
 
         //create a wheels holder
         wheels = new GameObject(gameObject.name + " wheels");
@@ -370,6 +382,8 @@ public class VehicleController : MonoBehaviour
         col3.size = new Vector3(distX - col.radius, col.radius * 0.5f, distZ);
         col3.center = new Vector3(0f, col.radius, 0f);
         col3.material = bodyPhysicsMat;
+
+        //rbody.isKinematic = true;
     }
 
     void getDiameter(Mesh mesh)
@@ -604,7 +618,11 @@ public class VehicleController : MonoBehaviour
     // Update is called once per frame
     public void Move(float steering, float accel, float footbrake, float handbrake)
     {
-        if(isDestoryed) return;
+        if(isDestoryed)
+        {
+            Debug.Log("isDestoryed !!!!");
+            return;
+        }
         //input//
         //inputX = Input.GetAxis("Horizontal");
         //inputY = Input.GetAxis("Vertical");
@@ -689,6 +707,11 @@ public class VehicleController : MonoBehaviour
 
     void LateUpdate()
     {
+        if(isDestoryed)
+        {
+            return;
+        }
+
         wheels.transform.position = transform.position;
         wheels.transform.rotation = transform.rotation;
     }

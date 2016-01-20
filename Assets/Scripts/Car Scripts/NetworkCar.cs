@@ -14,7 +14,7 @@ using UnityEngine;
 public class NetworkCar : Photon.MonoBehaviour
 {
 	// the CarInput to read/write input data from/to
-    private CarInput m_CarInput;
+    private CarInput carInput;
 	private Rigidbody rb;
 
 	// cached values for correct position/rotation (which are then interpolated)
@@ -22,13 +22,19 @@ public class NetworkCar : Photon.MonoBehaviour
 	private Quaternion correctPlayerRot;
 	private Vector3 currentVelocity;
 	private float updateTime = 0;
+    private VehicleController vehicleController;
 
     // the physics body of the vehicle
     private GameObject physicsBody;
 
+    private void Awake()
+    {
+        carInput = GetComponent<CarInput>();
+    }
+
     private void Start()
     {
-		m_CarInput = GetComponent<CarInput>();
+        vehicleController = GetComponentInChildren<VehicleController>();
         physicsBody = GetComponentInChildren<VehicleController>().physicsBody;
 		rb = physicsBody.GetComponent<Rigidbody>();
     }
@@ -38,6 +44,7 @@ public class NetworkCar : Photon.MonoBehaviour
     public void FixedUpdate()
     {
 		if (!photonView.isMine) {
+            if (vehicleController.isDestoryed) return;
 			Vector3 projectedPosition = this.correctPlayerPos + currentVelocity * (Time.time - updateTime);
             physicsBody.transform.position = Vector3.Lerp(physicsBody.transform.position, projectedPosition, Time.deltaTime * 4);
             physicsBody.transform.rotation = Quaternion.Lerp(physicsBody.transform.rotation, this.correctPlayerRot, Time.deltaTime * 4);
@@ -50,23 +57,23 @@ public class NetworkCar : Photon.MonoBehaviour
 	{
 		if (stream.isWriting) {
 			// we own this car: send the others our input and transform data
-			stream.SendNext((float)m_CarInput.Steer);
-			stream.SendNext((float)m_CarInput.Accell);
-			stream.SendNext((float)m_CarInput.Handbrake);
-            stream.SendNext(physicsBody.transform.position);
+			stream.SendNext((float)carInput.Steer);
+			stream.SendNext((float)carInput.Accell);
+			stream.SendNext((float)carInput.Handbrake);
+			stream.SendNext(physicsBody.transform.position);
 			stream.SendNext(physicsBody.transform.rotation);
 			stream.SendNext(rb.velocity);
-            stream.SendNext((float)m_CarInput.Fire);
+            stream.SendNext((float)carInput.Fire);
         }
 		else {
-			// remote car, receive data
-			m_CarInput.Steer = (float)stream.ReceiveNext();
-			m_CarInput.Accell = (float)stream.ReceiveNext();
-			m_CarInput.Handbrake = (float)stream.ReceiveNext();
-            correctPlayerPos = (Vector3)stream.ReceiveNext();
+            // remote car, receive data
+            carInput.Steer = (float)stream.ReceiveNext();
+            carInput.Accell = (float)stream.ReceiveNext();
+            carInput.Handbrake = (float)stream.ReceiveNext();
+			correctPlayerPos = (Vector3)stream.ReceiveNext();
 			correctPlayerRot = (Quaternion)stream.ReceiveNext();
 			currentVelocity = (Vector3)stream.ReceiveNext();
-            m_CarInput.Fire = (float)stream.ReceiveNext();
+            carInput.Fire = (float)stream.ReceiveNext();
             updateTime = Time.time;
 		} 
 	}
