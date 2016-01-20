@@ -716,7 +716,7 @@ public class VehicleController : MonoBehaviour
         wheels.transform.rotation = transform.rotation;
     }
 
-    public void SetToDestory()
+    public void SetToDestory(bool i = true)
     {
         isDestoryed = true;
     }

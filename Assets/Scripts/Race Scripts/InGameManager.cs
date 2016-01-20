@@ -59,13 +59,13 @@ public class InGameManager: PunBehaviour {
 		// compute positions locally...
 		carControllers.Sort();
 		int position = 1;
-		foreach(CarRaceControl c in carControllers) {
-			c.currentPosition = position;
-
-			// for updating the player order GUI
-			playerNames[position - 1].text = c.photonView.owner.name;
-			position++;
-		}
+//		foreach(CarRaceControl c in carControllers) {
+//			c.currentPosition = position;
+//
+//			// for updating the player order GUI
+//			playerNames[position - 1].text = c.photonView.owner.name;
+//			position++;
+//		}
 	}
 
 	// Instantiates player car on all peers, using the appropriate spawn point (based
@@ -106,13 +106,6 @@ public class InGameManager: PunBehaviour {
         CarRaceControl _carRaceControl = oldCar.GetComponent<CarRaceControl>();
 
         int pos = oldCar.GetComponent<CarRaceControl> ().currentPosition;
-        int pointer = 0;
-        foreach (CarRaceControl c in carControllers)
-        {
-			if (!c.Equals(_carRaceControl))pointer++;
-        }
-        Debug.Log("ReBornPlayer index:"+pointer);
-
         if(_carRaceControl.photonView.isMine)
         {
             Debug.Log("really ReBornPlayer");
@@ -127,16 +120,21 @@ public class InGameManager: PunBehaviour {
             car.GetComponent<CarGUI> ().positionGUI = positionGUI;
             car.GetComponent<CarGUI> ().speedGUI = speedGUI;
             car.GetComponent<CarGUI> ().messagesGUI = messagesGUI;
-
-            car.GetComponent<CarInput>().enabled = true;
             car.GetComponent<CarInput>().controlable = true;
         }
         else
         {
             Destroy(oldCar);
         }
-        carControllers[pointer] = car.GetComponent<CarRaceControl>();
+        car.GetComponent<CarInput>().enabled = true;
 
+        carControllers.Clear();
+        GameObject[] cars = GameObject.FindGameObjectsWithTag ("Player");
+        foreach (GameObject go in cars) {
+            go.GetComponent<CarInput>().enabled = true;
+            carControllers.Add(go.GetComponent<CarRaceControl>());
+        }
+        carControllers.Sort();
     }
 	
 	public void StartRace() {

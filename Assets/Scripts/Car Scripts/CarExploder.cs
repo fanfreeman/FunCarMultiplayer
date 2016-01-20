@@ -4,7 +4,8 @@ using System.Collections;
 public class CarExploder : MonoBehaviour {
 
     private GameObject physics;
-    private CarExploderRigidbodyTrigger trigger;
+    [HideInInspector]
+    public CarExploderRigidbodyTrigger trigger;
     private GameObject wheels;
     public GameObject vehicleBody;
     public GameObject car;
@@ -37,7 +38,7 @@ public class CarExploder : MonoBehaviour {
         //设置需要炸飞的部分
         if(trigger &&   wheels)
             trigger.Setup(
-                    this,
+                    transform,
                     vehicleBody,
                     GetComponent<VehicleController>(),
                     wheel_mid_extra_leftback,

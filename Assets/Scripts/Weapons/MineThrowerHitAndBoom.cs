@@ -20,7 +20,7 @@ public class MineThrowerHitAndBoom : MonoBehaviour {
             if(hit.transform.parent)
             {
                 if(hit.transform.parent.GetComponent<CarExploderRigidbodyTrigger>())
-                    hit.transform.parent.SendMessage("Exploder", 100f);
+                    hit.transform.parent.SendMessage("SetImBoomed");
             }
             else
             if (rb != null)

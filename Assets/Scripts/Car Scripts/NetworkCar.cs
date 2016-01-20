@@ -23,7 +23,6 @@ public class NetworkCar : Photon.MonoBehaviour
 	private Vector3 currentVelocity;
 	private float updateTime = 0;
     private VehicleController vehicleController;
-
     // the physics body of the vehicle
     private GameObject physicsBody;
 
@@ -64,6 +63,7 @@ public class NetworkCar : Photon.MonoBehaviour
 			stream.SendNext(physicsBody.transform.rotation);
 			stream.SendNext(rb.velocity);
             stream.SendNext((float)carInput.Fire);
+            stream.SendNext((bool)carInput.IsMyCarBoomed);
         }
 		else {
             // remote car, receive data
@@ -74,6 +74,7 @@ public class NetworkCar : Photon.MonoBehaviour
 			correctPlayerRot = (Quaternion)stream.ReceiveNext();
 			currentVelocity = (Vector3)stream.ReceiveNext();
             carInput.Fire = (float)stream.ReceiveNext();
+            carInput.IsMyCarBoomed = ((bool)carInput.IsMyCarBoomed);
             updateTime = Time.time;
 		} 
 	}

@@ -11,11 +11,12 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
     private VehicleController _vehicleScript;
     private GameObject suspensionBody;
     private CarExploder exploder;
+    private Transform exploderTransform;
     //撞击同时带有trigger和collider的物体可能会多次触发,防止多次触发
     private bool isBoomed = false;
     // Use this for initialization
     public void Setup (
-            CarExploder _exploder,
+            Transform _exploderTransform,
             GameObject body,
             VehicleController vehicleScript,
             GameObject wheel1,
@@ -25,7 +26,8 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
             PhysicMaterial physicMaterial,
             GameObject _suspensionBody
     ) {
-        exploder = _exploder;
+        exploderTransform = _exploderTransform;
+        exploder = _exploderTransform.GetComponent<CarExploder>();
         carBody = body;
 
         wheels = new GameObject[4];
@@ -43,11 +45,17 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
 //        Gizmos.color = Color.cyan;
 //        Gizmos.DrawSphere(transform.position,3f);
 //    }
+    public void SetImBoomed (){
+        //本地炸了 另一边必须也炸 不管另一端打没打到
+        exploderTransform.parent.GetComponent<CarInput>().IsMyCarBoomed = true;
+    }
+
     //引爆
     public void Exploder(float explosionForce = 123f)
     {
         if (isBoomed) return;
         isBoomed = true;
+
         //爆炸前的speed
         Vector3 speed;
         Vector3 explosionPos = carBody.transform.position;
