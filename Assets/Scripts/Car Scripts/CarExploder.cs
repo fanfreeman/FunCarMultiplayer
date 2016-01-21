@@ -58,10 +58,8 @@ public class CarExploder : MonoBehaviour {
 
     IEnumerator WaitSomeSecondsAndDestoryCar(float time)
     {
+
         yield return new WaitForSeconds(time) ;
-        Destroy(wheels);
-        Destroy(physics);
-        Destroy(suspensionBody);
         GameObject.Find("PUNManager").GetComponent<InGameManager>().ReBornPlayer(
                 car
         );

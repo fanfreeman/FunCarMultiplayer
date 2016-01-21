@@ -55,6 +55,7 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
     {
         if (isBoomed) return;
         isBoomed = true;
+        _vehicleScript.SetToDestory();
 
         //爆炸前的speed
         Vector3 speed;
@@ -93,7 +94,6 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
 
         BoxCollider carBodyCollider = carBody.AddComponent<BoxCollider>();
         carBodyCollider.size = carBody.transform.GetChild(0).GetComponent<MeshRenderer>().bounds.size;
-        _vehicleScript.SetToDestory();
 
         exploder.DestoryCar(4f);
         Debug.Log("爆炸");

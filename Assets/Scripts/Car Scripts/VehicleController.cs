@@ -705,6 +705,13 @@ public class VehicleController : MonoBehaviour
         vehicleBody.transform.localRotation = Quaternion.Lerp(vehicleBody.transform.localRotation, goalRot, 0.3f);
     }
 
+    void OnDestroy()
+    {
+        Destroy(wheels);
+        Destroy(physicsBody);
+        Destroy(suspensionBody);
+    }
+
     void LateUpdate()
     {
         if(isDestoryed)

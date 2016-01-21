@@ -37,6 +37,7 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 	// get and manage waypoints
 	void Start () {
 		currentWaypoint = GameObject.Find ("Checkpoint1").GetComponent<Checkpoint>();
+        GameObject.Find("PUNManager").GetComponent<InGameManager>().ResetCarControllers();
 	}
 
 	void Update () {
@@ -86,7 +87,10 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 		else if (distanceTraveled < other.distanceTraveled)
 			return 1;
 		else
-			return 0;
+            //如果相等就用名字来排序吧
+			return other.photonView.owner.name.CompareTo(
+                photonView.owner.name
+            );
 	}
 	
 }

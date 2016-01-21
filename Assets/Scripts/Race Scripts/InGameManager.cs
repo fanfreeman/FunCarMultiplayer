@@ -59,14 +59,26 @@ public class InGameManager: PunBehaviour {
 		// compute positions locally...
 		carControllers.Sort();
 		int position = 1;
-//		foreach(CarRaceControl c in carControllers) {
-//			c.currentPosition = position;
-//
-//			// for updating the player order GUI
-//			playerNames[position - 1].text = c.photonView.owner.name;
-//			position++;
-//		}
+		foreach(CarRaceControl c in carControllers) {
+			c.currentPosition = position;
+
+			// for updating the player order GUI
+			playerNames[position - 1].text = c.photonView.owner.name;
+			position++;
+		}
 	}
+
+    //reset carControllers every reborn
+    public void ResetCarControllers()
+    {
+        carControllers.Clear();
+        GameObject[] cars = GameObject.FindGameObjectsWithTag ("Player");
+        foreach (GameObject go in cars) {
+            go.GetComponent<CarInput>().enabled = true;
+            carControllers.Add(go.GetComponent<CarRaceControl>());
+        }
+        carControllers.Sort();
+    }
 
 	// Instantiates player car on all peers, using the appropriate spawn point (based
 	// on join order), and sets local camera target.
@@ -78,9 +90,8 @@ public class InGameManager: PunBehaviour {
 
 		// instantiate car at Spawn Transform
 		// car prefabs are numbered in the same order as the car sprites that the player chose from
-		car = PhotonNetwork.Instantiate("Car", spawn.position, spawn.rotation, 0);
+        car = PhotonNetwork.Instantiate("Car", spawn.position, spawn.rotation, 0);
         //car = ((Transform)GameObject.Instantiate(carPrefab, spawn.position, spawn.rotation)).gameObject;
-
         // car starting race position (for GUI) is same as spawn position + 1 (grid position)
         car.GetComponent<CarRaceControl> ().currentPosition = pos + 1;
 
@@ -105,14 +116,12 @@ public class InGameManager: PunBehaviour {
         Debug.Log("ReBornPlayer");
         CarRaceControl _carRaceControl = oldCar.GetComponent<CarRaceControl>();
 
-        int pos = oldCar.GetComponent<CarRaceControl> ().currentPosition;
         if(_carRaceControl.photonView.isMine)
         {
             Debug.Log("really ReBornPlayer");
-            Destroy(oldCar);
+            PhotonNetwork.Destroy(oldCar);
 
             car = PhotonNetwork.Instantiate("Car", spawnPoints[0].transform.position , spawnPoints[0].transform.rotation, 0);
-            car.GetComponent<CarRaceControl> ().currentPosition = pos;
             car.GetComponentInChildren<VehicleController>().cameraObject.SetActive(true);
             // enable GUI for local car
             car.GetComponent<CarGUI> ().enabled = true;
@@ -127,20 +136,13 @@ public class InGameManager: PunBehaviour {
             Destroy(oldCar);
         }
         car.GetComponent<CarInput>().enabled = true;
-
-        carControllers.Clear();
-        GameObject[] cars = GameObject.FindGameObjectsWithTag ("Player");
-        foreach (GameObject go in cars) {
-            go.GetComponent<CarInput>().enabled = true;
-            carControllers.Add(go.GetComponent<CarRaceControl>());
-        }
-        carControllers.Sort();
     }
 	
 	public void StartRace() {
 		Debug.Log ("Start");
 		state = RaceState.RACING;
 		GameObject[] cars = GameObject.FindGameObjectsWithTag ("Player");
+        carControllers.Clear();
 		foreach (GameObject go in cars) {
 			carControllers.Add(go.GetComponent<CarRaceControl>());
 			go.GetComponent<CarInput>().enabled = true;

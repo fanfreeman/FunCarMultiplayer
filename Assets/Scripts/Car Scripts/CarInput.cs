@@ -35,6 +35,7 @@ public class CarInput : MonoBehaviour
 	
 	void FixedUpdate()
 	{
+        if (car.isDestoryed) return;
 		// if car is locally controllable, read and cache player input
 		if (controlable) {
 			GetInput();

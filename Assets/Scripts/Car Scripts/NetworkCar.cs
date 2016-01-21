@@ -54,6 +54,7 @@ public class NetworkCar : Photon.MonoBehaviour
 	/// and rotation data to/from peers/owner
 	void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
 	{
+        if(vehicleController.isDestoryed) return;
 		if (stream.isWriting) {
 			// we own this car: send the others our input and transform data
 			stream.SendNext((float)carInput.Steer);
