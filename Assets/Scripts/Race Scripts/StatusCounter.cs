@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CarAffiliateDestorySelf : MonoBehaviour {
+public class StatusCounter : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

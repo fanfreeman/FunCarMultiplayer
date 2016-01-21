@@ -31,6 +31,8 @@ public class CarWeaponSystem : MonoBehaviour {
 	
 	// Update is called once per frame
 	public void BiuBiuBiu (float fire) {
+        if (GetComponent<VehicleController>().isDestoryed)
+            return;
         mineCoolDownCounter -= Time.deltaTime;
         //fire
         if (fire != 0)

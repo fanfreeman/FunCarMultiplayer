@@ -17,6 +17,7 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 	public float distanceTraveled = 0;
 	public int currentPosition = 5;
 	public int waypointsPassed = 0;
+    public TextMesh playerNameMesh;
 
 	/* Compare the desired direction (towards next checkpoint) with current 
 	 * car heading (using dot product).
@@ -37,6 +38,9 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 	// get and manage waypoints
 	void Start () {
 		currentWaypoint = GameObject.Find ("Checkpoint1").GetComponent<Checkpoint>();
+        //显示敌对玩家的名字！！！！！
+        if(!photonView.isMine)
+        	playerNameMesh.text = photonView.owner.name;
         GameObject.Find("PUNManager").GetComponent<InGameManager>().ResetCarControllers();
 	}
 
@@ -86,11 +90,19 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 			return -1;
 		else if (distanceTraveled < other.distanceTraveled)
 			return 1;
-		else
+		else{
+            if(!other)return -1;
             //如果相等就用名字来排序吧
-			return other.photonView.owner.name.CompareTo(
-                photonView.owner.name
+            return other.photonView.owner.name.CompareTo(
+                    photonView.owner.name
             );
+        }
+
 	}
+
+	void OnDestroy()
+    {
+        GameObject.Find("PUNManager").GetComponent<InGameManager>().ResetCarControllers(this);
+    }
 	
 }

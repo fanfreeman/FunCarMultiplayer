@@ -15,12 +15,20 @@ public class CarExploder : MonoBehaviour {
     private GameObject wheel_mid_extra_leftfront;
     private GameObject wheel_mid_extra_rightback;
     private GameObject wheel_mid_extra_rightfront;
+    private InGameManager inGameManager;
 
     public PhysicMaterial boomPhysics;
 
+    void Awake()
+    {
+        inGameManager =
+            GameObject.Find("PUNManager").GetComponent<InGameManager>();
+
+    }
 	// Use this for initialization
 	void Start ()
     {
+
         VehicleController _vehicleController = GetComponent<VehicleController>();
         wheel_mid_extra_leftback = _vehicleController.wheelLeftBack;
         wheel_mid_extra_leftfront = _vehicleController.wheelLeftFront;
@@ -53,6 +61,7 @@ public class CarExploder : MonoBehaviour {
     //毁掉的车销毁掉
     public void DestoryCar(float time)
     {
+        inGameManager.IwasBoomedBySomeOne(car);
         StartCoroutine(WaitSomeSecondsAndDestoryCar(time));
     }
 
@@ -60,7 +69,7 @@ public class CarExploder : MonoBehaviour {
     {
 
         yield return new WaitForSeconds(time) ;
-        GameObject.Find("PUNManager").GetComponent<InGameManager>().ReBornPlayer(
+        inGameManager.ReBornPlayer(
                 car
         );
     }

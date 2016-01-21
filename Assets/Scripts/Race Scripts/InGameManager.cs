@@ -13,8 +13,9 @@ public class InGameManager: PunBehaviour {
 	public Text speedGUI;
 	public Text messagesGUI;
 	public Sprite noCar;
-	public Text[] playerNames;
-
+    public Text[] playerNames;
+    public Text[] playerDeaths;
+	public Hashtable deathCounter;
 	// reference to local player car
 	private GameObject car;
 
@@ -31,6 +32,7 @@ public class InGameManager: PunBehaviour {
 	
 	void Start () {
 		Debug.Log ("Created car");
+        deathCounter = new Hashtable();
 		CreateCar();
 	}
 
@@ -64,6 +66,7 @@ public class InGameManager: PunBehaviour {
 
 			// for updating the player order GUI
 			playerNames[position - 1].text = c.photonView.owner.name;
+            playerDeaths[position - 1].text = ((int)deathCounter[c.photonView.ownerId]).ToString();
 			position++;
 		}
 	}
@@ -78,6 +81,11 @@ public class InGameManager: PunBehaviour {
             carControllers.Add(go.GetComponent<CarRaceControl>());
         }
         carControllers.Sort();
+    }
+
+    public void ResetCarControllers(CarRaceControl carRaceControl)
+    {
+        carControllers.Remove(carRaceControl);
     }
 
 	// Instantiates player car on all peers, using the appropriate spawn point (based
@@ -107,6 +115,15 @@ public class InGameManager: PunBehaviour {
 		car.GetComponent<CarGUI> ().messagesGUI = messagesGUI;
 	}
 
+    //死亡计分
+    public void IwasBoomedBySomeOne(GameObject oldCar)
+    {
+        CarRaceControl _carRaceControl = oldCar.GetComponent<CarRaceControl>();
+        int deathNum = (int)deathCounter[_carRaceControl.photonView.ownerId];
+        deathNum++;
+        deathCounter[_carRaceControl.photonView.ownerId] = deathNum;
+    }
+
 	/// <summary>
 	///	被炸重生
 	/// </summary>
@@ -115,10 +132,10 @@ public class InGameManager: PunBehaviour {
     {
         Debug.Log("ReBornPlayer");
         CarRaceControl _carRaceControl = oldCar.GetComponent<CarRaceControl>();
-
         if(_carRaceControl.photonView.isMine)
         {
             Debug.Log("really ReBornPlayer");
+
             PhotonNetwork.Destroy(oldCar);
 
             car = PhotonNetwork.Instantiate("Car", spawnPoints[0].transform.position , spawnPoints[0].transform.rotation, 0);
@@ -131,10 +148,6 @@ public class InGameManager: PunBehaviour {
             car.GetComponent<CarGUI> ().messagesGUI = messagesGUI;
             car.GetComponent<CarInput>().controlable = true;
         }
-        else
-        {
-            Destroy(oldCar);
-        }
         car.GetComponent<CarInput>().enabled = true;
     }
 	
@@ -143,11 +156,14 @@ public class InGameManager: PunBehaviour {
 		state = RaceState.RACING;
 		GameObject[] cars = GameObject.FindGameObjectsWithTag ("Player");
         carControllers.Clear();
+        deathCounter.Clear();
 		foreach (GameObject go in cars) {
-			carControllers.Add(go.GetComponent<CarRaceControl>());
+            CarRaceControl carRaceControl = go.GetComponent<CarRaceControl>();
+			carControllers.Add(carRaceControl);
 			go.GetComponent<CarInput>().enabled = true;
 			go.GetComponent<CarRaceControl>().currentWaypoint = GameObject.Find("Checkpoint1").GetComponent<Checkpoint>();
-		}
+            deathCounter.Add(carRaceControl.photonView.ownerId, 0);
+        }
 		car.GetComponent<CarInput>().controlable = true;
 		raceTime = 0;
 	}

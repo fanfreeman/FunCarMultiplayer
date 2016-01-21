@@ -61,12 +61,17 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
         Vector3 speed;
         Vector3 explosionPos = carBody.transform.position;
         const float explosionRadius = 6f;
-
+        //移除骨骼好炸飞
         Destroy(suspension);
         //移除车先前的collider
         Rigidbody selfRig = gameObject.GetComponent<Rigidbody>();
         speed = selfRig.velocity;
-        Destroy(selfRig);
+        foreach (Collider c in GetComponents<Collider>())
+        {
+            Destroy(c);
+        }
+        Destroy(suspension.GetComponentInChildren<Collider>());
+
 
         //给轮子添加刚体和collider
         foreach (GameObject wheel in wheels) {
@@ -97,6 +102,5 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
 
         exploder.DestoryCar(4f);
         Debug.Log("爆炸");
-        Destroy(gameObject);
     }
 }

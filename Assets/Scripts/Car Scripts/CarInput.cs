@@ -21,7 +21,9 @@ public class CarInput : MonoBehaviour
     public float Accell { get; set; }
 	public float Handbrake { get; set; }
     public float Fire { get; set; }
-    public bool IsMyCarBoomed  { get; set; }
+   // public bool IsMyCarBoomed  { get; set; }
+    public bool IsMyCarBoomed = false;
+
     // when true, car will be controlled locally (remotely otherwise)
 	public bool controlable = false;
 
@@ -35,7 +37,6 @@ public class CarInput : MonoBehaviour
 	
 	void FixedUpdate()
 	{
-        if (car.isDestoryed) return;
 		// if car is locally controllable, read and cache player input
 		if (controlable) {
 			GetInput();
@@ -61,9 +62,13 @@ public class CarInput : MonoBehaviour
 
 	// apply universal input to move the car
 	protected virtual void ApplyInput() {
-		car.Move (Steer, Accell, Accell, Handbrake);
+        if(IsMyCarBoomed)
+        {
+            carExploder.trigger.Exploder(100f);
+            return;
+        }
+        car.Move (Steer, Accell, Accell, Handbrake);
         carWeapon.BiuBiuBiu (Fire);
-        if(IsMyCarBoomed) carExploder.trigger.Exploder(100f);
 	}
 
 	private bool Flipped() {
