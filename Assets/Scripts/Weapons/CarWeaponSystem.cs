@@ -30,20 +30,26 @@ public class CarWeaponSystem : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	public void BiuBiuBiu (float fire) {
+	void Update () {
+
         if (GetComponent<VehicleController>().isDestoryed)
             return;
         mineCoolDownCounter -= Time.deltaTime;
         //fire
-        if (fire != 0)
+        if (Input.GetKeyUp (KeyCode.Space))
         {
             if(mineCoolDownCounter <=0 )
             {
                 mineCoolDownCounter = mineCoolDownCount;
-                StartCoroutine(FireMine(3));
+                transform.parent.GetComponent<NetworkCar>().Fire();
             }
         }
 	}
+
+    public void BiuBiuBiu()
+    {
+            StartCoroutine(FireMine(3));
+    }
 
     public IEnumerator FireMine(int time)
     {
@@ -55,7 +61,7 @@ public class CarWeaponSystem : MonoBehaviour {
         }
     }
 
-    private float[] randomYYY = {-25f,0f,25f};
+    private float[] firePosRotationOffset = {-25f,0f,25f};
     private void ShootMineOut(int i)
     {
         GameObject biubiu = Instantiate(
@@ -65,8 +71,7 @@ public class CarWeaponSystem : MonoBehaviour {
         ) as GameObject;
 
         //方向随机性
-        float randomY = Random.Range(-25f,25f);
-        biubiu.transform.Rotate(Vector3.up*randomYYY[i]);
+        biubiu.transform.Rotate(Vector3.up*firePosRotationOffset[i]);
         //calRotation = Quaternion.Euler(0f,randomY,0f);
         CanBeShootOut canBeShootOut = biubiu.GetComponent<CanBeShootOut>();
         canBeShootOut.Fire(carRealRigidbody.velocity.magnitude);

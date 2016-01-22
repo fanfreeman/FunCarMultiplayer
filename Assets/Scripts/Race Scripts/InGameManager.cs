@@ -20,7 +20,8 @@ public class InGameManager: PunBehaviour {
 	private GameObject car;
 
 	// list of all player´s cars (for position calculation)
-	List<CarRaceControl> carControllers = new List<CarRaceControl> ();
+	[HideInInspector]
+    public List<CarRaceControl> carControllers = new List<CarRaceControl> ();
 	
 	public float raceTime = 0;
 	public double startTimestamp = 0;
@@ -72,7 +73,7 @@ public class InGameManager: PunBehaviour {
 	}
 
     //reset carControllers every reborn
-    public void ResetCarControllers()
+    private void ResetCarControllers()
     {
         carControllers.Clear();
         GameObject[] cars = GameObject.FindGameObjectsWithTag ("Player");
@@ -93,7 +94,7 @@ public class InGameManager: PunBehaviour {
 	private void CreateCar() {
 		// gets spawn Transform based on player join order (spawn property)
 		int pos = (int) PhotonNetwork.player.customProperties["spawn"];
-		int carNumber = (int) PhotonNetwork.player.customProperties["car"];
+//		int carNumber = (int) PhotonNetwork.player.customProperties["car"];
         Transform spawn = spawnPoints[pos];
 
 		// instantiate car at Spawn Transform
@@ -115,6 +116,11 @@ public class InGameManager: PunBehaviour {
 		car.GetComponent<CarGUI> ().messagesGUI = messagesGUI;
 	}
 
+    public override void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        ResetCarControllers();
+    }
+
     //死亡计分
     public void IwasBoomedBySomeOne(GameObject oldCar)
     {
@@ -130,12 +136,10 @@ public class InGameManager: PunBehaviour {
 	/// <param name="oldCar">需要销毁的被炸了的车</param>
     public void ReBornPlayer(GameObject oldCar)
     {
-        Debug.Log("ReBornPlayer");
+
         CarRaceControl _carRaceControl = oldCar.GetComponent<CarRaceControl>();
         if(_carRaceControl.photonView.isMine)
         {
-            Debug.Log("really ReBornPlayer");
-
             PhotonNetwork.Destroy(oldCar);
 
             car = PhotonNetwork.Instantiate("Car", spawnPoints[0].transform.position , spawnPoints[0].transform.rotation, 0);

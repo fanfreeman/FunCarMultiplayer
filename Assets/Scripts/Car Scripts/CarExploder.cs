@@ -28,7 +28,7 @@ public class CarExploder : MonoBehaviour {
 	// Use this for initialization
 	void Start ()
     {
-
+        string name = transform.parent.GetComponent<NetworkCar>().photonView.owner.name;
         VehicleController _vehicleController = GetComponent<VehicleController>();
         wheel_mid_extra_leftback = _vehicleController.wheelLeftBack;
         wheel_mid_extra_leftfront = _vehicleController.wheelLeftFront;
@@ -54,7 +54,8 @@ public class CarExploder : MonoBehaviour {
                     wheel_mid_extra_rightback,
                     wheel_mid_extra_rightfront,
                     boomPhysics,
-                    suspensionBody
+                    suspensionBody,
+                    name
             );
 	}
 

@@ -620,7 +620,6 @@ public class VehicleController : MonoBehaviour
     {
         if(isDestoryed)
         {
-            Debug.Log("isDestoryed !!!!");
             return;
         }
         //input//

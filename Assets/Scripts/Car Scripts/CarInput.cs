@@ -13,26 +13,18 @@ public class CarInput : MonoBehaviour
 {
 	// our car controller
 	private VehicleController car;
-    private CarWeaponSystem carWeapon;
-    private CarExploder carExploder;
 
 	// player input properties
 	public float Steer { get; set; }
     public float Accell { get; set; }
 	public float Handbrake { get; set; }
-    public float Fire { get; set; }
-   // public bool IsMyCarBoomed  { get; set; }
-    public bool IsMyCarBoomed = false;
 
     // when true, car will be controlled locally (remotely otherwise)
 	public bool controlable = false;
 
 	void Start()
 	{
-        IsMyCarBoomed = false;
 		car = GetComponentInChildren<VehicleController>();
-        carWeapon = GetComponentInChildren<CarWeaponSystem>();
-        carExploder = GetComponentInChildren<CarExploder>();
 	}
 	
 	void FixedUpdate()
@@ -50,7 +42,6 @@ public class CarInput : MonoBehaviour
 	protected virtual void GetInput() {
 		Steer = CrossPlatformInputManager.GetAxis("Horizontal");
 		Accell = CrossPlatformInputManager.GetAxis("Vertical");
-        Fire = CrossPlatformInputManager.GetAxis("Jump");
 
         if (Flipped () || CrossPlatformInputManager.GetButton("Fire3")) {
 			Unflip();
@@ -62,13 +53,7 @@ public class CarInput : MonoBehaviour
 
 	// apply universal input to move the car
 	protected virtual void ApplyInput() {
-        if(IsMyCarBoomed)
-        {
-            carExploder.trigger.Exploder(100f);
-            return;
-        }
         car.Move (Steer, Accell, Accell, Handbrake);
-        carWeapon.BiuBiuBiu (Fire);
 	}
 
 	private bool Flipped() {

@@ -4,7 +4,6 @@ using System.Collections;
 public class MineThrowerHitAndBoom : MonoBehaviour {
     [Tooltip("attach your GameObject that has a Particle System, it will be placed for the explosion")]
     public GameObject particlesEmitter;
-    private ParticleSystem particles;
     private GameObject particlesEmitterObj;
     private float explodRadius = 3f;
 
@@ -19,8 +18,9 @@ public class MineThrowerHitAndBoom : MonoBehaviour {
 
             if(hit.transform.parent)
             {
-                if(hit.transform.parent.GetComponent<CarExploderRigidbodyTrigger>())
-                    hit.transform.parent.SendMessage("SetImBoomed");
+                CarExploderRigidbodyTrigger cert;
+                if(cert = hit.transform.parent.GetComponent<CarExploderRigidbodyTrigger>())
+                    cert.SetImBoomed();
             }
             else
             if (rb != null)
@@ -37,7 +37,6 @@ public class MineThrowerHitAndBoom : MonoBehaviour {
         {
             particlesEmitterObj = Instantiate(particlesEmitter,transform.position,transform.rotation) as GameObject;
             particlesEmitterObj.AddComponent<ParticlesDestroySelf>();
-            particles = particlesEmitterObj.GetComponent<ParticleSystem>();
         }
         Destroy(transform.parent.gameObject);
     }

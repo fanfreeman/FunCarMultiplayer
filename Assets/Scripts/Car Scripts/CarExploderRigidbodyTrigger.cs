@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-//挂在在刚体上 方便实现各种物理效果
+//挂在在刚体上 方便实现各种boomboomboom效果
 public class CarExploderRigidbodyTrigger : MonoBehaviour {
 
     private CharacterJoint suspension;
@@ -12,6 +12,7 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
     private GameObject suspensionBody;
     private CarExploder exploder;
     private Transform exploderTransform;
+    private string photonName;
     //撞击同时带有trigger和collider的物体可能会多次触发,防止多次触发
     private bool isBoomed = false;
     // Use this for initialization
@@ -24,8 +25,10 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
             GameObject wheel3,
             GameObject wheel4,
             PhysicMaterial physicMaterial,
-            GameObject _suspensionBody
+            GameObject _suspensionBody,
+            string _name
     ) {
+        photonName =_name;
         exploderTransform = _exploderTransform;
         exploder = _exploderTransform.GetComponent<CarExploder>();
         carBody = body;
@@ -41,13 +44,10 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
         suspension = _suspensionBody.GetComponent<CharacterJoint>();
 
     }
-//    void OnDrawGizmos() {
-//        Gizmos.color = Color.cyan;
-//        Gizmos.DrawSphere(transform.position,3f);
-//    }
+
+    //炸车RPC
     public void SetImBoomed (){
-        //本地炸了 另一边必须也炸 不管另一端打没打到
-        exploderTransform.parent.GetComponent<CarInput>().IsMyCarBoomed = true;
+        exploderTransform.parent.GetComponent<NetworkCar>().Boom(photonName);
     }
 
     //引爆

@@ -38,6 +38,42 @@ public class NetworkCar : Photon.MonoBehaviour
 		rb = physicsBody.GetComponent<Rigidbody>();
     }
 
+    public void Fire()
+    {
+        string name = PhotonNetwork.player.name;
+        photonView.RPC (
+                "StartFire",
+                PhotonTargets.All,
+                name
+        );
+    }
+
+    [PunRPC]
+    public void StartFire(string name)
+    {
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag ("Player"))
+        {
+                if(go.GetComponent<CarRaceControl>().GetPlayerName.Equals(name))
+                    go.GetComponentInChildren<CarWeaponSystem>().BiuBiuBiu();
+        }
+    }
+
+    public void Boom(string name)
+    {
+        photonView.RPC (
+                "BoomSomeone",
+                PhotonTargets.All,
+                name
+        );
+    }
+
+    [PunRPC]
+    public void BoomSomeone(string name) {
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player")) {
+            if (go.GetComponent<CarRaceControl>().GetPlayerName.Equals(name))
+                go.GetComponentInChildren<CarExploder>().trigger.Exploder();
+        }
+    }
 	/// if it is a remote car, interpolates position and rotation
     /// received from network
     public void FixedUpdate()
@@ -63,8 +99,6 @@ public class NetworkCar : Photon.MonoBehaviour
 			stream.SendNext(physicsBody.transform.position);
 			stream.SendNext(physicsBody.transform.rotation);
 			stream.SendNext(rb.velocity);
-            stream.SendNext((float)carInput.Fire);
-            stream.SendNext((bool)carInput.IsMyCarBoomed);
         }
 		else {
             // remote car, receive data
@@ -74,8 +108,6 @@ public class NetworkCar : Photon.MonoBehaviour
 			correctPlayerPos = (Vector3)stream.ReceiveNext();
 			correctPlayerRot = (Quaternion)stream.ReceiveNext();
 			currentVelocity = (Vector3)stream.ReceiveNext();
-            carInput.Fire = (float)stream.ReceiveNext();
-            carInput.IsMyCarBoomed = ((bool)carInput.IsMyCarBoomed);
             updateTime = Time.time;
 		} 
 	}

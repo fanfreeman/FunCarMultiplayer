@@ -18,7 +18,9 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 	public int currentPosition = 5;
 	public int waypointsPassed = 0;
     public TextMesh playerNameMesh;
-
+    public string GetPlayerName{
+        get { return photonView.owner.name; }
+    }
 	/* Compare the desired direction (towards next checkpoint) with current 
 	 * car heading (using dot product).
 	 * If dot is less than 0, car is poiting wrong way, even slightly.
@@ -41,7 +43,6 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
         //显示敌对玩家的名字！！！！！
         if(!photonView.isMine)
         	playerNameMesh.text = photonView.owner.name;
-        GameObject.Find("PUNManager").GetComponent<InGameManager>().ResetCarControllers();
 	}
 
 	void Update () {
@@ -79,6 +80,8 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 		distanceTraveled = 1000 * waypointsPassed + (1000 - distance.magnitude);
 	}
 
+
+
 	/// <summary>
 	/// Compares to other CarRaceControl, by using distance traveled, so cars can be ordered (position).
 	/// </summary>
@@ -91,7 +94,7 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 		else if (distanceTraveled < other.distanceTraveled)
 			return 1;
 		else{
-            if(!other)return -1;
+            if (other == null || this == null) return -1;
             //如果相等就用名字来排序吧
             return other.photonView.owner.name.CompareTo(
                     photonView.owner.name
