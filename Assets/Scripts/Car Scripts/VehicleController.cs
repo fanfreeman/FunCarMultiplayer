@@ -96,7 +96,7 @@ public class VehicleController : MonoBehaviour
     private GameObject turnRF;
     //if car is destoryed, player should not controll it!;
     [HideInInspector]
-    public bool isDestoryed;
+    public bool isBoomedOrKilled;
 
     [HideInInspector]
     public float inputX;
@@ -166,7 +166,7 @@ public class VehicleController : MonoBehaviour
 
     void Awake()
     {
-        isDestoryed = false;
+        isBoomedOrKilled = false;
 
         //make sure vehicleBody has the correct parent//
         vehicleBody.transform.SetParent(transform);
@@ -432,7 +432,7 @@ public class VehicleController : MonoBehaviour
 
     void Update()
     {
-        if (isDestoryed) return;
+        if (isBoomedOrKilled) return;
         //track how many tires are touching the ground//
         tiresOnGround = 0;
         FtiresOnGround = 0;
@@ -618,7 +618,7 @@ public class VehicleController : MonoBehaviour
     // Update is called once per frame
     public void Move(float steering, float accel, float footbrake, float handbrake)
     {
-        if(isDestoryed)
+        if(isBoomedOrKilled)
         {
             return;
         }
@@ -706,6 +706,10 @@ public class VehicleController : MonoBehaviour
 
     void OnDestroy()
     {
+        Destroy(wheelLeftFront);
+        Destroy(wheelRightFront);
+        Destroy(wheelLeftBack);
+        Destroy(wheelRightBack);
         Destroy(wheels);
         Destroy(physicsBody);
         Destroy(suspensionBody);
@@ -713,7 +717,7 @@ public class VehicleController : MonoBehaviour
 
     void LateUpdate()
     {
-        if(isDestoryed)
+        if(isBoomedOrKilled)
         {
             return;
         }
@@ -722,9 +726,9 @@ public class VehicleController : MonoBehaviour
         wheels.transform.rotation = transform.rotation;
     }
 
-    public void SetToDestory(bool i = true)
+    public void SetToBoomedOrKilled(bool i = true)
     {
-        isDestoryed = true;
+        isBoomedOrKilled = true;
     }
 
 }

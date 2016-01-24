@@ -18,6 +18,7 @@ public class CarWeaponSystem : MonoBehaviour {
     private const float mineCoolDownCount = 1.5f;
     private float mineCoolDownCounter;
 
+    private const float timeDeltaOfEveryBiuBiuBiu = 0.13f;
     // Use this for initialization
 	void Start () {
         //获得刚体
@@ -32,7 +33,7 @@ public class CarWeaponSystem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (GetComponent<VehicleController>().isDestoryed)
+        if (GetComponent<VehicleController>().isBoomedOrKilled)
             return;
         mineCoolDownCounter -= Time.deltaTime;
         //fire
@@ -46,13 +47,15 @@ public class CarWeaponSystem : MonoBehaviour {
         }
 	}
 
+    //射击
     public void BiuBiuBiu()
     {
-            StartCoroutine(FireMine(3));
+        StartCoroutine(FireMine());
     }
 
-    public IEnumerator FireMine(int time)
+    public IEnumerator FireMine()
     {
+        int time = firePosRotationOffset.Length;
         while (time > 0)
         {
             time--;
@@ -61,6 +64,9 @@ public class CarWeaponSystem : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// 一次射击多发的位置偏移
+    /// </summary>
     private float[] firePosRotationOffset = {-25f,0f,25f};
     private void ShootMineOut(int i)
     {
@@ -73,7 +79,7 @@ public class CarWeaponSystem : MonoBehaviour {
         //方向随机性
         biubiu.transform.Rotate(Vector3.up*firePosRotationOffset[i]);
         //calRotation = Quaternion.Euler(0f,randomY,0f);
-        CanBeShootOut canBeShootOut = biubiu.GetComponent<CanBeShootOut>();
+        MineThrower canBeShootOut = biubiu.GetComponent<MineThrower>();
         canBeShootOut.Fire(carRealRigidbody.velocity.magnitude);
     }
 }

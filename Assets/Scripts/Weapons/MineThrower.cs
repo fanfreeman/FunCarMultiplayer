@@ -38,10 +38,8 @@ public class MineThrower : CanBeShootOut {
     private float rotatorMeshObjZ = 1.25f;
     private float rotatorMeshObjZSpeed = 24f;
     private int factor = -1;
-    void Update()
-    {
-  //     MakeBombMoveCrazy();
-    }
+
+
 
     private void MakeBombMoveCrazy()
     {
@@ -61,7 +59,7 @@ public class MineThrower : CanBeShootOut {
     void FixedUpdate ()
     {
         if(!fired) return;
-            body.GetComponent<Rigidbody>().AddForce(400f*500f*Vector3.forward*Time.deltaTime);
-            body.GetComponent<Rigidbody>().AddForce(1200f*500f*Vector3.down*Time.deltaTime);
+        body.GetComponent<Rigidbody>().AddForce(400f*500f*Vector3.forward*Time.deltaTime);
+        body.GetComponent<Rigidbody>().AddForce(1200f*500f*Vector3.down*Time.deltaTime);
     }
 }

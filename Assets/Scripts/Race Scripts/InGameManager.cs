@@ -15,15 +15,15 @@ public class InGameManager: PunBehaviour {
 	public Sprite noCar;
     public Text[] playerNames;
     public Text[] playerDeaths;
-	public Hashtable deathCounter;
 	// reference to local player car
 	private GameObject car;
 
 	// list of all player´s cars (for position calculation)
 	[HideInInspector]
     public List<CarRaceControl> carControllers = new List<CarRaceControl> ();
-	
-	public float raceTime = 0;
+    public Dictionary<int, int> deathCounter;
+
+    public float raceTime = 0;
 	public double startTimestamp = 0;
 
 	private RaceState state = RaceState.PRE_START;
@@ -33,7 +33,7 @@ public class InGameManager: PunBehaviour {
 	
 	void Start () {
 		Debug.Log ("Created car");
-        deathCounter = new Hashtable();
+        deathCounter = new Dictionary<int, int>();
 		CreateCar();
 	}
 
@@ -60,33 +60,43 @@ public class InGameManager: PunBehaviour {
 			break;
 		}
 		// compute positions locally...
-		carControllers.Sort();
+		bool swap = Sort(ref carControllers);
 		int position = 1;
 		foreach(CarRaceControl c in carControllers) {
 			c.currentPosition = position;
 
 			// for updating the player order GUI
 			playerNames[position - 1].text = c.photonView.owner.name;
-            playerDeaths[position - 1].text = ((int)deathCounter[c.photonView.ownerId]).ToString();
+            playerDeaths[position - 1].text = (deathCounter[c.GetPlayerID]).ToString();
 			position++;
 		}
 	}
 
     //reset carControllers every reborn
-    private void ResetCarControllers()
+    public void ResetCarControllers()
     {
         carControllers.Clear();
         GameObject[] cars = GameObject.FindGameObjectsWithTag ("Player");
-        foreach (GameObject go in cars) {
-            go.GetComponent<CarInput>().enabled = true;
-            carControllers.Add(go.GetComponent<CarRaceControl>());
+        foreach (GameObject go in cars)
+        {
+            if(!go.GetComponentInChildren<VehicleController>().isBoomedOrKilled)
+            {
+                CarRaceControl carRaceControl = go.GetComponent<CarRaceControl>();
+                go.GetComponent<CarInput>().enabled = true;
+                carControllers.Add(carRaceControl);
+                if (!deathCounter.ContainsKey(carRaceControl.GetPlayerID))
+                {
+                    deathCounter.Add(carRaceControl.GetPlayerID, 0);
+                }
+            }
+
         }
         carControllers.Sort();
     }
 
     public void ResetCarControllers(CarRaceControl carRaceControl)
     {
-        carControllers.Remove(carRaceControl);
+       // carControllers.Remove(carRaceControl);
     }
 
 	// Instantiates player car on all peers, using the appropriate spawn point (based
@@ -116,18 +126,13 @@ public class InGameManager: PunBehaviour {
 		car.GetComponent<CarGUI> ().messagesGUI = messagesGUI;
 	}
 
-    public override void OnPhotonInstantiate(PhotonMessageInfo info)
-    {
-        ResetCarControllers();
-    }
+
 
     //死亡计分
     public void IwasBoomedBySomeOne(GameObject oldCar)
     {
         CarRaceControl _carRaceControl = oldCar.GetComponent<CarRaceControl>();
-        int deathNum = (int)deathCounter[_carRaceControl.photonView.ownerId];
-        deathNum++;
-        deathCounter[_carRaceControl.photonView.ownerId] = deathNum;
+        deathCounter[_carRaceControl.GetPlayerID]++;
     }
 
 	/// <summary>
@@ -151,8 +156,8 @@ public class InGameManager: PunBehaviour {
             car.GetComponent<CarGUI> ().speedGUI = speedGUI;
             car.GetComponent<CarGUI> ().messagesGUI = messagesGUI;
             car.GetComponent<CarInput>().controlable = true;
+            car.GetComponent<CarInput>().enabled = true;
         }
-        car.GetComponent<CarInput>().enabled = true;
     }
 	
 	public void StartRace() {
@@ -166,11 +171,31 @@ public class InGameManager: PunBehaviour {
 			carControllers.Add(carRaceControl);
 			go.GetComponent<CarInput>().enabled = true;
 			go.GetComponent<CarRaceControl>().currentWaypoint = GameObject.Find("Checkpoint1").GetComponent<Checkpoint>();
-            deathCounter.Add(carRaceControl.photonView.ownerId, 0);
+            deathCounter.Add(carRaceControl.GetPlayerID, 0);
         }
 		car.GetComponent<CarInput>().controlable = true;
 		raceTime = 0;
 	}
+
+    //large to small n^2complex
+    private static bool Sort(ref List<CarRaceControl> unsorted)
+    {
+        bool swp = false;
+        for (int i = 0; i < unsorted.Count; i++)
+        {
+            for (int j = i; j < unsorted.Count; j++)
+            {
+                if (unsorted[i].CompareTo(unsorted[j]) > 0 )
+                {
+                    CarRaceControl temp = unsorted[i];
+                    unsorted[i] = unsorted[j];
+                    unsorted[j] = temp;
+                    swp = true;
+                }
+            }
+        }
+        return swp;
+    }
 
 	[PunRPC]
 	public void StartCountdown(double startTimestamp) {

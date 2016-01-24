@@ -21,11 +21,18 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
     public string GetPlayerName{
         get { return photonView.owner.name; }
     }
-	/* Compare the desired direction (towards next checkpoint) with current 
-	 * car heading (using dot product).
-	 * If dot is less than 0, car is poiting wrong way, even slightly.
-	 * Same principle is used for upside-down computation.
-	 */
+    public int GetPlayerID{
+        get { return photonView.ownerId; }
+    }
+    public int GetViewID {
+        get { return photonView.viewID; }
+    }
+
+    /* Compare the desired direction (towards next checkpoint) with current
+     * car heading (using dot product).
+     * If dot is less than 0, car is poiting wrong way, even slightly.
+     * Same principle is used for upside-down computation.
+     */
 	public bool WrongWay {
 		get {
 			Vector3 correctDirection = currentWaypoint.transform.position - transform.position;
@@ -48,6 +55,11 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 	void Update () {
 		UpdateDistanceTraveled ();
 	}
+
+    void OnPhotonInstantiate(PhotonMessageInfo info)
+    {
+        GameObject.Find("PUNManager").GetComponent<InGameManager>().ResetCarControllers();
+    }
 
 	// called when passing a race checkpoint
 	// counts laps and disables car controls at the end of the race
@@ -103,9 +115,4 @@ public class CarRaceControl : Photon.MonoBehaviour, IComparable<CarRaceControl> 
 
 	}
 
-	void OnDestroy()
-    {
-        GameObject.Find("PUNManager").GetComponent<InGameManager>().ResetCarControllers(this);
-    }
-	
 }

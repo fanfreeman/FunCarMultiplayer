@@ -89,7 +89,7 @@ public class Menu : PunBehaviour {
 	// (masterClient only) enables start race button
 	public override void OnCreatedRoom () {
 		btStart.gameObject.SetActive(true);
-		SetCustomProperties(PhotonNetwork.player, 0, PhotonNetwork.playerList.Length - 1);
+        SetCustomProperties(PhotonNetwork.player, 0, PhotonNetwork.playerList.Length - 1);
 	}
 
 	// if master client, for every newly connected player, sets the custom properties for him
@@ -97,6 +97,7 @@ public class Menu : PunBehaviour {
 	public override void OnPhotonPlayerConnected (PhotonPlayer newPlayer) {
 		if (PhotonNetwork.isMasterClient) {
 			SetCustomProperties (newPlayer, 0, PhotonNetwork.playerList.Length - 1);
+
 		}
 	}
 
@@ -151,7 +152,7 @@ public class Menu : PunBehaviour {
 
 	// sets and syncs custom properties on a network player (including masterClient)
 	private void SetCustomProperties(PhotonPlayer player, int car, int position) {
-		ExitGames.Client.Photon.Hashtable customProperties = new ExitGames.Client.Photon.Hashtable() { { "spawn", position }, {"car", car} };
+		ExitGames.Client.Photon.Hashtable customProperties = new ExitGames.Client.Photon.Hashtable() { { "spawn", position }, {"car", car},{"position", position} };
 		player.SetCustomProperties(customProperties);
 	}
 }

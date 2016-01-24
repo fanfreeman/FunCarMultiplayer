@@ -25,7 +25,6 @@ public class NetworkCar : Photon.MonoBehaviour
     private VehicleController vehicleController;
     // the physics body of the vehicle
     private GameObject physicsBody;
-
     private void Awake()
     {
         carInput = GetComponent<CarInput>();
@@ -40,46 +39,63 @@ public class NetworkCar : Photon.MonoBehaviour
 
     public void Fire()
     {
-        string name = PhotonNetwork.player.name;
+
+        if(photonView.isMine == false) return;
+        int iniSpawn = photonView.viewID;
+//        Debug.Log("im going to fire:"+nameShooter);
         photonView.RPC (
                 "StartFire",
                 PhotonTargets.All,
-                name
+                iniSpawn
         );
     }
 
+    /// <summary>
+    ///通过 PhotonView.viewID确定目标玩家
+    /// </summary>
     [PunRPC]
-    public void StartFire(string name)
+    public void StartFire(int viewID)
     {
+//        Debug.Log("RPC needs me to fire:"+nameShooter);
         foreach (GameObject go in GameObject.FindGameObjectsWithTag ("Player"))
         {
-                if(go.GetComponent<CarRaceControl>().GetPlayerName.Equals(name))
+                if(go.GetComponent<CarRaceControl>().GetViewID.Equals(viewID))
+                {
+//                    Debug.Log("im fired!:"+nameShooter);
                     go.GetComponentInChildren<CarWeaponSystem>().BiuBiuBiu();
+                }
         }
     }
 
-    public void Boom(string name)
+    public void Boom(int viewID)
     {
-        photonView.RPC (
-                "BoomSomeone",
-                PhotonTargets.All,
-                name
-        );
+        //炸没炸到 主机说的算 其他client只看个热闹
+        if(PhotonNetwork.isMasterClient)
+        {
+//            Debug.Log("im going to boom!!!!!:"+iniSpawn);
+            photonView.RPC (
+                    "BoomSomeone",
+                    PhotonTargets.All,
+                    viewID
+            );
+        }
+
     }
 
     [PunRPC]
-    public void BoomSomeone(string name) {
+    public void BoomSomeone(int viewID) {
         foreach (GameObject go in GameObject.FindGameObjectsWithTag("Player")) {
-            if (go.GetComponent<CarRaceControl>().GetPlayerName.Equals(name))
+            if (go.GetComponent<CarRaceControl>().GetViewID.Equals(viewID))
                 go.GetComponentInChildren<CarExploder>().trigger.Exploder();
         }
     }
+
 	/// if it is a remote car, interpolates position and rotation
     /// received from network
     public void FixedUpdate()
     {
 		if (!photonView.isMine) {
-            if (vehicleController.isDestoryed) return;
+            if (vehicleController.isBoomedOrKilled) return;
 			Vector3 projectedPosition = this.correctPlayerPos + currentVelocity * (Time.time - updateTime);
             physicsBody.transform.position = Vector3.Lerp(physicsBody.transform.position, projectedPosition, Time.deltaTime * 4);
             physicsBody.transform.rotation = Quaternion.Lerp(physicsBody.transform.rotation, this.correctPlayerRot, Time.deltaTime * 4);
