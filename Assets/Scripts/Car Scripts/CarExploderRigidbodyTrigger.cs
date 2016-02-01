@@ -80,7 +80,7 @@ public class CarExploderRigidbodyTrigger : MonoBehaviour {
             wheel.transform.SetParent(null);
             Collider collider =
             wheel.AddComponent<SphereCollider>();
-          //  collider.material = boomPhysics;
+            collider.material = boomPhysics;
 
             Rigidbody rigidbody = wheel.AddComponent<Rigidbody>();
             rigidbody.mass = 100f;

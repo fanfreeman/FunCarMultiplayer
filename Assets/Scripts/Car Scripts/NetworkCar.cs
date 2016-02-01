@@ -62,7 +62,7 @@ public class NetworkCar : Photon.MonoBehaviour
                 if(go.GetComponent<CarRaceControl>().GetViewID.Equals(viewID))
                 {
 //                    Debug.Log("im fired!:"+nameShooter);
-                    go.GetComponentInChildren<CarWeaponSystem>().BiuBiuBiu();
+                    go.GetComponentInChildren<WeaponSystem>().BiuBiuBiu();
                 }
         }
     }
