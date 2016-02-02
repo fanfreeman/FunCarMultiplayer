@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MoverBullet : WeaponBase
+public class MoverBullet : WeaponFireBase
 {
     public int Lifetime;
     public float Speed = 80;

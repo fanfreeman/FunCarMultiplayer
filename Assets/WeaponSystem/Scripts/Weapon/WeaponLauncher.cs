@@ -5,7 +5,7 @@ using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(AudioSource))]
 
-public class WeaponLauncher : WeaponBase
+public class WeaponLauncher : WeaponFireBase
 {
 	public bool OnActive;
 	public bool OnScreenAiming;
@@ -48,6 +48,8 @@ public class WeaponLauncher : WeaponBase
 	public bool Reloading;
 	[HideInInspector]
 	public float ReloadingProcess;
+
+    public bool isMine = false;
 	
 	private void Start ()
 	{
@@ -101,6 +103,7 @@ public class WeaponLauncher : WeaponBase
 	
 	void FixedUpdate ()
 	{
+        if(isMine)
 		if (OnActive) {
 			rayAiming ();
 		}
@@ -108,7 +111,9 @@ public class WeaponLauncher : WeaponBase
 	
 	private void Update ()
 	{
-		if (CurrentCamera == null) {
+        if (!isMine) return;
+
+            if (CurrentCamera == null) {
 			
 			CurrentCamera = Camera.main;
 			
@@ -200,7 +205,8 @@ public class WeaponLauncher : WeaponBase
 
 	private void DrawTargetLockon (Transform aimtarget, bool locked)
 	{
-		if (!ShowHUD)
+        if (!isMine) return;
+        if (!ShowHUD)
 			return;
 		
 		if (CurrentCamera) {
@@ -284,94 +290,118 @@ public class WeaponLauncher : WeaponBase
 	
 	private int currentOuter = 0;
 
-	public void Shoot ()
+	public void TryFire ()
 	{
 		if (InfinityAmmo) {
 			Ammo = 1;	
 		}
 		if (Ammo > 0) {
 			if (Time.time > nextFireTime + FireRate) {
-				nextFireTime = Time.time;
-				torqueTemp = TorqueSpeedAxis;
-				Ammo -= 1;
-				Vector3 missileposition = this.transform.position;
-				Quaternion missilerotate = this.transform.rotation;
-				if (MissileOuter.Length > 0) {
-					missilerotate = MissileOuter [currentOuter].rotation;	
-					missileposition = MissileOuter [currentOuter].position;	
-				}
-
-				if (MissileOuter.Length > 0) {
-					currentOuter += 1;
-					if (currentOuter >= MissileOuter.Length)
-						currentOuter = 0;
-				}
-			
-				if (Muzzle) {
-					GameObject muzzle = (GameObject)GameObject.Instantiate (Muzzle, missileposition, missilerotate);
-					muzzle.transform.parent = this.transform;
-					GameObject.Destroy (muzzle, MuzzleLifeTime);
-					if (MissileOuter.Length > 0) {
-						muzzle.transform.parent = MissileOuter [currentOuter].transform;
-					}
-				}
-			
-				for (int i = 0; i < NumBullet; i++) {
-					if (Missile) {
-						Vector3 spread = new Vector3 (Random.Range (-Spread, Spread), Random.Range (-Spread, Spread), Random.Range (-Spread, Spread)) / 100;
-						Vector3 direction = this.transform.forward + spread;
-					
-					
-					
-						GameObject bullet = (GameObject)Instantiate (Missile, missileposition, missilerotate);
-						DamageBase damangeBase = bullet.GetComponent<DamageBase> ();
-						if (damangeBase) {
-							damangeBase.Owner = Owner;
-							damangeBase.TargetTag = TargetTag;
-							damangeBase.IgnoreTag = IgnoreTag;
-						}
-						WeaponBase weaponBase = bullet.GetComponent<WeaponBase> ();
-						if (weaponBase) {
-							weaponBase.Owner = Owner;
-							weaponBase.Target = target;
-							weaponBase.TargetTag = TargetTag;
-							weaponBase.IgnoreTag = IgnoreTag;
-						}
-						bullet.transform.forward = direction;
-						if (RigidbodyProjectile) {
-							if (bullet.GetComponent<Rigidbody>()) {
-								if (Owner != null && Owner.GetComponent<Rigidbody>()) {
-									bullet.GetComponent<Rigidbody>().velocity = Owner.GetComponent<Rigidbody>().velocity;
-								}
-								bullet.GetComponent<Rigidbody>().AddForce (direction * ForceShoot);	
-							}
-						}
-					
-					}
-				}
-				if (Shell) {
-					Transform shelloutpos = this.transform;
-					if (ShellOuter.Length > 0) {
-						shelloutpos = ShellOuter [currentOuter];
-					}
-				
-					GameObject shell = (GameObject)Instantiate (Shell, shelloutpos.position, Random.rotation);
-					GameObject.Destroy (shell.gameObject, ShellLifeTime);
-					if (shell.GetComponent<Rigidbody>()) {
-						shell.GetComponent<Rigidbody>().AddForce (shelloutpos.forward * ShellOutForce);
-					}
-				}
-				
-				if (SoundGun.Length > 0) {
-					if (audioSource) {
-						audioSource.PlayOneShot (SoundGun [Random.Range (0, SoundGun.Length)]);
-					}
-				}
-			
-				nextFireTime += FireRate;
-			}
+                TryNetworkFire();
+            }
 		} 
 		
 	}
 
+    public void Fire ()
+    {
+        m_CurrentFireSeed = GetFireSeed();
+
+        nextFireTime = Time.time;
+        torqueTemp = TorqueSpeedAxis;
+        Ammo -= 1;
+        Vector3 missileposition = this.transform.position;
+        Quaternion missilerotate = this.transform.rotation;
+        if (MissileOuter.Length > 0)
+        {
+            missilerotate = MissileOuter[currentOuter].rotation;
+            missileposition = MissileOuter[currentOuter].position;
+        }
+
+        if (MissileOuter.Length > 0)
+        {
+            currentOuter += 1;
+            if (currentOuter >= MissileOuter.Length)
+                currentOuter = 0;
+        }
+
+        if (Muzzle)
+        {
+            GameObject muzzle = (GameObject)GameObject.Instantiate(Muzzle, missileposition, missilerotate);
+            muzzle.transform.parent = this.transform;
+            GameObject.Destroy(muzzle, MuzzleLifeTime);
+            if (MissileOuter.Length > 0)
+            {
+                muzzle.transform.parent = MissileOuter[currentOuter].transform;
+            }
+        }
+
+        for (int i = 0; i < NumBullet; i++)
+        {
+            if (Missile)
+            {
+                Random.seed = m_CurrentFireSeed;
+                Vector3 spread = new Vector3(Random.Range(-Spread, Spread), Random.Range(-Spread, Spread), Random.Range(-Spread, Spread)) / 100;
+                Vector3 direction = this.transform.forward + spread;
+
+
+
+                GameObject bullet = (GameObject)Instantiate(Missile, missileposition, missilerotate);
+                DamageBase damangeBase = bullet.GetComponent<DamageBase>();
+                if (damangeBase)
+                {
+                    damangeBase.Owner = Owner;
+                    damangeBase.TargetTag = TargetTag;
+                    damangeBase.IgnoreTag = IgnoreTag;
+                }
+                IWeaponBase weaponBase = bullet.GetComponent<IWeaponBase>();
+                if (weaponBase != null)
+                {
+                    weaponBase.Owner = Owner;
+                    weaponBase.Target = target;
+                    weaponBase.TargetTag = TargetTag;
+                    weaponBase.IgnoreTag = IgnoreTag;
+                }
+                bullet.transform.forward = direction;
+                if (RigidbodyProjectile)
+                {
+                    if (bullet.GetComponent<Rigidbody>())
+                    {
+                        if (Owner != null && Owner.GetComponent<Rigidbody>())
+                        {
+                            bullet.GetComponent<Rigidbody>().velocity = Owner.GetComponent<Rigidbody>().velocity;
+                        }
+                        bullet.GetComponent<Rigidbody>().AddForce(direction * ForceShoot);
+                    }
+                }
+
+            }
+        }
+        if (Shell)
+        {
+            Transform shelloutpos = this.transform;
+            if (ShellOuter.Length > 0)
+            {
+                shelloutpos = ShellOuter[currentOuter];
+            }
+            Random.seed = m_CurrentFireSeed;
+            GameObject shell = (GameObject)Instantiate(Shell, shelloutpos.position, Random.rotation);
+            GameObject.Destroy(shell.gameObject, ShellLifeTime);
+            if (shell.GetComponent<Rigidbody>())
+            {
+                shell.GetComponent<Rigidbody>().AddForce(shelloutpos.forward * ShellOutForce);
+            }
+        }
+
+        if (SoundGun.Length > 0)
+        {
+            if (audioSource)
+            {
+                Random.seed = m_CurrentFireSeed;
+                audioSource.PlayOneShot(SoundGun[Random.Range(0, SoundGun.Length)]);
+            }
+        }
+
+        nextFireTime += FireRate;
+    }
 }

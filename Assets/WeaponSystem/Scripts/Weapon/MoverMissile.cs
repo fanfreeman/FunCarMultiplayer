@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class MoverMissile : WeaponBase
+public class MoverMissile : WeaponFireBase
 {
 	public float Damping = 3;
 	public float Speed = 80;

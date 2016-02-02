@@ -55,7 +55,7 @@ public class WeaponController : MonoBehaviour
 	{
 		CurrentWeapon = index;
 		if (CurrentWeapon < WeaponLists.Length && WeaponLists [index] != null) {
-			WeaponLists [index].Shoot ();
+		//	WeaponLists [index].Shoot ();
 		}
 	}
 	
@@ -70,7 +70,7 @@ public class WeaponController : MonoBehaviour
 	public void LaunchWeapon ()
 	{
 		if (CurrentWeapon < WeaponLists.Length && WeaponLists [CurrentWeapon] != null) {
-			WeaponLists [CurrentWeapon].Shoot ();
+	//		WeaponLists [CurrentWeapon].Shoot ();
 		}
 	}
 }

@@ -19,6 +19,7 @@ public class WeaponSystem : WeaponBehaviour {
     private Rigidbody carRealRigidbody;
     private const float mineCoolDownCount = 1.5f;
     private float mineCoolDownCounter;
+    private PhotonView photonView;
     //
     protected Dictionary<int, WeaponBehaviour> m_Weapons = new Dictionary<int, WeaponBehaviour>();
 
@@ -26,22 +27,24 @@ public class WeaponSystem : WeaponBehaviour {
     // Use this for initialization
     void Awake()
     { 
-        vehicleController = GetComponent<VehicleController>();
+        vehicleController = GetComponentInChildren<VehicleController>();
     }
 
 	public override void Start () {
-        base.Start();
+        photonView = PhotonView.Get(this);
         //获得CD
         mineCoolDownCounter = mineCoolDownCount;
-        physics = gameObject.GetComponent<VehicleController>().physicsBody;
+        physics = vehicleController.physicsBody;
         if(physics)
         {
             carRealRigidbody = physics.GetComponent<Rigidbody>();
         }
-	}
-	
-	// Update is called once per frame
-	public override void Update () {
+
+        base.Start();
+    }
+
+    // Update is called once per frame
+    public override void Update () {
         if (vehicleController.isBoomedOrKilled)
             return;
 
@@ -103,38 +106,58 @@ public class WeaponSystem : WeaponBehaviour {
     public override void InitWeapons()
     {
         weaponLists = gameObject.GetComponentsInChildren<WeaponLauncher>(true);
+        foreach (WeaponLauncher w in weaponLists)
+        {
+            WeaponLauncher weapon = w;  // need to cache shooter or delegate will only be set with values of last weapon
+            weapon.isMine = photonView.isMine;
+            weapon.GetFireSeed = delegate
+            {
+                return Shots;
+            };
+            weapon.m_SendFireEventToNetworkFunc = delegate ()
+            {
+                    if (!photonView) Debug.LogError("photonView is null");
+                    if (photonView.isMine)
+                    photonView.RPC("Fire", PhotonTargets.All, CurrentWeapon);
+                //vp_MPDebug.Log("sending RPC: " + sho.gameObject.name + ", " + sho.GetFirePosition() + ", " + sho.GetFireRotation());
+            };
+
+        }
 
 
 
-//         vp_WeaponShooter[] shooters = gameObject.GetComponentsInChildren<vp_WeaponShooter>(true) as vp_WeaponShooter[];
-//         m_Shooters.Clear();
-//         foreach (vp_WeaponShooter f in shooters)
-//         {
-// 
-//             vp_WeaponShooter shooter = f;   // need to cache shooter or delegate will only be set with values of last weapon
-// 
-//             if (m_Shooters.ContainsKey(WeaponHandler.GetWeaponIndex(shooter.Weapon)))
-//                 continue;
-// 
-//             shooter.GetFireSeed = delegate
-//             {
-//                 return Shots;
-//             };
-// 
-//             shooter.m_SendFireEventToNetworkFunc = delegate ()
-//             {
-//                 if (!PhotonNetwork.offlineMode)
-//                     photonView.RPC("FireWeapon", PhotonTargets.All, WeaponHandler.GetWeaponIndex(shooter.Weapon), shooter.GetFirePosition(), shooter.GetFireRotation());
-//                 //vp_MPDebug.Log("sending RPC: " + sho.gameObject.name + ", " + sho.GetFirePosition() + ", " + sho.GetFireRotation());
-//             };
-// 
-//             m_Shooters.Add(WeaponHandler.GetWeaponIndex(shooter.Weapon), shooter);
+
+        //         vp_WeaponShooter[] shooters = gameObject.GetComponentsInChildren<vp_WeaponShooter>(true) as vp_WeaponShooter[];
+        //         m_Shooters.Clear();
+        //         foreach (vp_WeaponShoot  er f in shooters)
+        //         {
+        // 
+        //             vp_WeaponShooter shooter = f;   // need to cache shooter or delegate will only be set with values of last weapon
+        // 
+        //             if (m_Shooters.ContainsKey(WeaponHandler.GetWeaponIndex(shooter.Weapon)))
+        //                 continue;
+        // 
+        //             shooter.GetFireSeed = delegate
+        //             {
+        //                 return Shots;
+        //             };
+        // 
+        //             shooter.m_SendFireEventToNetworkFunc = delegate ()
+        //             {
+        //                 if (!PhotonNetwork.offlineMode)
+        //                     photonView.RPC("FireWeapon", PhotonTargets.All, WeaponHandler.GetWeaponIndex(shooter.Weapon), shooter.GetFirePosition(), shooter.GetFireRotation());
+        //                 //vp_MPDebug.Log("sending RPC: " + sho.gameObject.name + ", " + sho.GetFirePosition() + ", " + sho.GetFireRotation());
+        //             };
+        // 
+        //             m_Shooters.Add(WeaponHandler.GetWeaponIndex(shooter.Weapon), shooter);
 
         //       }
 
         //Debug.Log("Stored " + m_Shooters.Count + " local weapons.");
 
     }
+
+
 
     public override WeaponLauncher GetCurrentWeapon()
     {
@@ -145,23 +168,22 @@ public class WeaponSystem : WeaponBehaviour {
         return null;
     }
 
-    public override void Fire(int index)
+    public override void LaunchWeapon()
     {
-        currentWeapon = index;
-        if (currentWeapon < weaponLists.Length && weaponLists[index] != null)
+        base.LaunchWeapon();
+    }
+
+    [PunRPC]
+    public override void Fire(int weaponIndex)
+    {
+        base.Fire(weaponIndex);
+        if (weaponIndex < weaponLists.Length && weaponLists[weaponIndex] != null)
         {
-            weaponLists[index].Shoot();
+            weaponLists[weaponIndex].Fire();
         }
     }
 
-    public override void Fire()
-    {
-        if (currentWeapon < weaponLists.Length && weaponLists[currentWeapon] != null)
-        {
-            weaponLists[currentWeapon].Shoot();
-        }
-    }
-
+    
     //射击
     public void BiuBiuBiu()
     {
